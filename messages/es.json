@@ -1,0 +1,58 @@
+{
+  "Metadata": {
+    "description": "De la lluvia de ideas al plan del viaje, todo en un mapa."
+  },
+  "Home": {
+    "tagline": "Stay kurious.",
+    "intro": "De la lluvia de ideas al plan del viaje, todo en un mapa.",
+    "mapLabel": "Mapa del viaje"
+  },
+  "NotFound": {
+    "title": "Esta página no existe",
+    "back": "Volver al mapa"
+  },
+  "Auth": {
+    "tabsLabel": "Entrar o crear cuenta",
+    "tabLogin": "Entrar",
+    "tabSignup": "Crear cuenta",
+    "loginTitle": "Hola de nuevo",
+    "loginSubtitle": "Entra para seguir planeando el viaje con tu grupo.",
+    "signupTitle": "Crea tu cuenta",
+    "signupSubtitle": "Para planear viajes con tu grupo sobre el mapa.",
+    "name": "Nombre",
+    "namePlaceholder": "Así te verá tu grupo",
+    "email": "Correo",
+    "emailPlaceholder": "tu@correo.com",
+    "password": "Contraseña",
+    "passwordHint": "Mínimo {min} caracteres.",
+    "showPassword": "Mostrar contraseña",
+    "hidePassword": "Ocultar contraseña",
+    "loginSubmit": "Entrar",
+    "loginPending": "Entrando…",
+    "signupSubmit": "Crear cuenta",
+    "signupPending": "Creando la cuenta…",
+    "toSignup": "¿Aún no tienes cuenta? <link>Crea una</link>",
+    "toLogin": "¿Ya tienes cuenta? <link>Entra</link>",
+    "checkEmailTitle": "Revisa tu correo",
+    "checkEmailBody": "Te hemos enviado un enlace a <strong>{email}</strong>. Ábrelo para activar tu cuenta y entrar.",
+    "notConfigured": "El inicio de sesión aún no está conectado. Añade las claves de Supabase en .env.local.",
+    "accountLabel": "Tu cuenta",
+    "signOut": "Salir",
+    "errors": {
+      "nameRequired": "Escribe tu nombre.",
+      "nameTooLong": "El nombre es demasiado largo.",
+      "emailInvalid": "Revisa el correo, parece que falta algo.",
+      "passwordRequired": "Escribe tu contraseña.",
+      "passwordTooShort": "La contraseña necesita al menos {min} caracteres.",
+      "invalidCredentials": "El correo o la contraseña no coinciden.",
+      "emailNotConfirmed": "Aún no has activado la cuenta. Abre el enlace que te enviamos por correo.",
+      "userExists": "Ya hay una cuenta con este correo. Entra con ella.",
+      "weakPassword": "Esa contraseña es demasiado fácil. Prueba con otra más larga.",
+      "rateLimit": "Demasiados intentos. Espera un momento y vuelve a probar.",
+      "signupDisabled": "Ahora mismo no se pueden crear cuentas nuevas.",
+      "linkInvalid": "El enlace ha caducado o ya se usó. Entra, o crea la cuenta de nuevo.",
+      "notConfigured": "El inicio de sesión aún no está conectado.",
+      "generic": "Algo ha fallado. Vuelve a probar en un momento."
+    }
+  }
+}

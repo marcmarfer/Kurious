@@ -1,0 +1,58 @@
+{
+  "Metadata": {
+    "description": "From brainstorm to trip plan, all on one map."
+  },
+  "Home": {
+    "tagline": "Stay kurious.",
+    "intro": "From brainstorm to trip plan, all on one map.",
+    "mapLabel": "Trip map"
+  },
+  "NotFound": {
+    "title": "This page does not exist",
+    "back": "Back to the map"
+  },
+  "Auth": {
+    "tabsLabel": "Log in or create an account",
+    "tabLogin": "Log in",
+    "tabSignup": "Create account",
+    "loginTitle": "Welcome back",
+    "loginSubtitle": "Log in to keep planning the trip with your group.",
+    "signupTitle": "Create your account",
+    "signupSubtitle": "To plan trips with your group on the map.",
+    "name": "Name",
+    "namePlaceholder": "How your group will see you",
+    "email": "Email",
+    "emailPlaceholder": "you@email.com",
+    "password": "Password",
+    "passwordHint": "At least {min} characters.",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password",
+    "loginSubmit": "Log in",
+    "loginPending": "Logging in…",
+    "signupSubmit": "Create account",
+    "signupPending": "Creating your account…",
+    "toSignup": "No account yet? <link>Create one</link>",
+    "toLogin": "Already have an account? <link>Log in</link>",
+    "checkEmailTitle": "Check your email",
+    "checkEmailBody": "We sent a link to <strong>{email}</strong>. Open it to activate your account and log in.",
+    "notConfigured": "Login is not connected yet. Add the Supabase keys to .env.local.",
+    "accountLabel": "Your account",
+    "signOut": "Log out",
+    "errors": {
+      "nameRequired": "Enter your name.",
+      "nameTooLong": "That name is too long.",
+      "emailInvalid": "Check the email, something seems to be missing.",
+      "passwordRequired": "Enter your password.",
+      "passwordTooShort": "The password needs at least {min} characters.",
+      "invalidCredentials": "The email or password doesn't match.",
+      "emailNotConfirmed": "You haven't activated your account yet. Open the link we emailed you.",
+      "userExists": "There is already an account with this email. Log in with it.",
+      "weakPassword": "That password is too easy to guess. Try a longer one.",
+      "rateLimit": "Too many attempts. Wait a moment and try again.",
+      "signupDisabled": "New accounts can't be created right now.",
+      "linkInvalid": "The link has expired or was already used. Log in, or create the account again.",
+      "notConfigured": "Login is not connected yet.",
+      "generic": "Something went wrong. Try again in a moment."
+    }
+  }
+}

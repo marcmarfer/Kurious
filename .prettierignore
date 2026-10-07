@@ -1,0 +1,13 @@
+.next
+.next-e2e
+.open-next
+.wrangler
+node_modules
+package-lock.json
+playwright-report
+test-results
+supabase/.temp
+cloudflare-env.d.ts
+public/vendor
+supabase/templates
+src/lib/supabase/database.types.ts

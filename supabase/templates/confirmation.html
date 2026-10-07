@@ -1,0 +1,37 @@
+{{- /* Kurious confirmation email. The language comes from user_metadata.locale (set at sign-up); Spanish otherwise. */ -}}
+{{- $locale := "es" -}}{{- with .Data -}}{{- $locale = printf "%v" .locale -}}{{- end -}}
+<!doctype html>
+<html>
+  <body style="margin: 0; padding: 0; background: #f4f0dc">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #f4f0dc; padding: 32px 16px">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 440px; background: #fcfbf6; border: 1px solid #e4e6dc; border-radius: 24px; padding: 32px 28px; font-family: Nunito, Arial, Helvetica, sans-serif; color: #1f2a24">
+            <tr>
+              <td>
+                <p style="margin: 0 0 4px; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-weight: 600; color: #1d4736">Kurious</p>
+                <p style="margin: 0 0 24px; font-size: 15px; font-weight: 700; color: #8e4a2a">Stay kurious.</p>
+                {{ if eq $locale "pt" }}
+                <p style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Ative sua conta</p>
+                <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #5f6b63">Toque no botão para confirmar seu e-mail e entrar no Kurious.</p>
+                {{ else if eq $locale "en" }}
+                <p style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Activate your account</p>
+                <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #5f6b63">Tap the button to confirm your email and log in to Kurious.</p>
+                {{ else }}
+                <p style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Activa tu cuenta</p>
+                <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #5f6b63">Pulsa el botón para confirmar tu correo y entrar en Kurious.</p>
+                {{ end }}
+                <a href="{{ .RedirectTo }}?token_hash={{ .TokenHash }}&amp;type=email" style="display: block; background: #8e4a2a; color: #fcfbf6; text-decoration: none; text-align: center; font-size: 17px; font-weight: 800; padding: 15px 20px; border-radius: 999px">
+                  {{ if eq $locale "pt" }}Ativar minha conta{{ else if eq $locale "en" }}Activate my account{{ else }}Activar mi cuenta{{ end }}
+                </a>
+                <p style="margin: 24px 0 0; font-size: 13px; line-height: 1.5; color: #5f6b63">
+                  {{ if eq $locale "pt" }}Se você não criou uma conta no Kurious, ignore este e-mail.{{ else if eq $locale "en" }}If you didn't create a Kurious account, you can ignore this email.{{ else }}Si no has creado una cuenta en Kurious, ignora este correo.{{ end }}
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

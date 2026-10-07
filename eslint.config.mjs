@@ -1,0 +1,24 @@
+import { defineConfig, globalIgnores } from "eslint/config";
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
+
+const eslintConfig = defineConfig([
+  ...nextVitals,
+  ...nextTs,
+  globalIgnores([
+    ".next/**",
+    "out/**",
+    "build/**",
+    "next-env.d.ts",
+    ".next-e2e/**",
+    ".open-next/**",
+    ".wrangler/**",
+    "cloudflare-env.d.ts",
+    "public/vendor/**",
+    "playwright-report/**",
+    "test-results/**",
+    "src/lib/supabase/database.types.ts",
+  ]),
+]);
+
+export default eslintConfig;

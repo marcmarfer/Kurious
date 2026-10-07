@@ -1,0 +1,58 @@
+{
+  "Metadata": {
+    "description": "Da chuva de ideias ao roteiro da viagem, tudo num mapa."
+  },
+  "Home": {
+    "tagline": "Stay kurious.",
+    "intro": "Da chuva de ideias ao roteiro da viagem, tudo num mapa.",
+    "mapLabel": "Mapa da viagem"
+  },
+  "NotFound": {
+    "title": "Esta página não existe",
+    "back": "Voltar ao mapa"
+  },
+  "Auth": {
+    "tabsLabel": "Entrar ou criar conta",
+    "tabLogin": "Entrar",
+    "tabSignup": "Criar conta",
+    "loginTitle": "Que bom te ver de novo",
+    "loginSubtitle": "Entre para continuar planejando a viagem com seu grupo.",
+    "signupTitle": "Crie sua conta",
+    "signupSubtitle": "Para planejar viagens com seu grupo no mapa.",
+    "name": "Nome",
+    "namePlaceholder": "Assim seu grupo vai te ver",
+    "email": "E-mail",
+    "emailPlaceholder": "voce@email.com",
+    "password": "Senha",
+    "passwordHint": "Mínimo de {min} caracteres.",
+    "showPassword": "Mostrar senha",
+    "hidePassword": "Ocultar senha",
+    "loginSubmit": "Entrar",
+    "loginPending": "Entrando…",
+    "signupSubmit": "Criar conta",
+    "signupPending": "Criando a conta…",
+    "toSignup": "Ainda não tem conta? <link>Crie uma</link>",
+    "toLogin": "Já tem conta? <link>Entre</link>",
+    "checkEmailTitle": "Confira seu e-mail",
+    "checkEmailBody": "Enviamos um link para <strong>{email}</strong>. Abra-o para ativar sua conta e entrar.",
+    "notConfigured": "O login ainda não está conectado. Adicione as chaves do Supabase em .env.local.",
+    "accountLabel": "Sua conta",
+    "signOut": "Sair",
+    "errors": {
+      "nameRequired": "Escreva seu nome.",
+      "nameTooLong": "O nome é longo demais.",
+      "emailInvalid": "Confira o e-mail, parece que falta algo.",
+      "passwordRequired": "Escreva sua senha.",
+      "passwordTooShort": "A senha precisa de pelo menos {min} caracteres.",
+      "invalidCredentials": "O e-mail ou a senha não conferem.",
+      "emailNotConfirmed": "Você ainda não ativou a conta. Abra o link que enviamos por e-mail.",
+      "userExists": "Já existe uma conta com este e-mail. Entre com ela.",
+      "weakPassword": "Essa senha é fácil demais. Tente uma mais longa.",
+      "rateLimit": "Muitas tentativas. Espere um pouco e tente de novo.",
+      "signupDisabled": "No momento não é possível criar contas novas.",
+      "linkInvalid": "O link expirou ou já foi usado. Entre, ou crie a conta de novo.",
+      "notConfigured": "O login ainda não está conectado.",
+      "generic": "Algo deu errado. Tente de novo daqui a pouco."
+    }
+  }
+}
