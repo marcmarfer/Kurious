@@ -1,4 +1,5 @@
 import { getLocale, getTranslations } from "next-intl/server";
+import { UserIcon } from "@/components/icons";
 import { Link } from "@/i18n/navigation";
 import { signOut } from "./actions";
 import { getCurrentUser } from "./session";
@@ -20,6 +21,7 @@ export async function AccountMenu() {
   }
 
   const locale = await getLocale();
+  const tn = await getTranslations("Nav");
   const shown = user.name || user.email;
   return (
     <details className="group relative">
@@ -34,7 +36,13 @@ export async function AccountMenu() {
         {user.name && (
           <p className="text-muted truncate text-sm">{user.email}</p>
         )}
-        <form action={signOut} className="mt-3">
+        <Link
+          href="/settings"
+          className="border-line text-ink hover:border-forest-dark focus-ring mt-3 flex h-11 w-full items-center justify-center rounded-full border bg-white font-bold"
+        >
+          {tn("settings")}
+        </Link>
+        <form action={signOut} className="mt-2">
           <input type="hidden" name="locale" value={locale} />
           <button
             type="submit"
@@ -45,23 +53,5 @@ export async function AccountMenu() {
         </form>
       </div>
     </details>
-  );
-}
-
-function UserIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      className="size-5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <circle cx="12" cy="8" r="4" />
-      <path d="M4 21a8 8 0 0 1 16 0" />
-    </svg>
   );
 }

@@ -57,4 +57,4 @@ supabase/.temp
 supabase/.branches
 
 # copied from node_modules on install (scripts/copy-maplibre-worker.mjs)
-/public/vendor
+/public/vendor/maplibre-gl

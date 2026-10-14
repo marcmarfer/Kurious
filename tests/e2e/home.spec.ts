@@ -3,18 +3,16 @@ import { expect, test } from "@playwright/test";
 test.describe("browser in Spanish", () => {
   test.use({ locale: "es-ES" });
 
-  test("Spanish has no prefix and the map loads", async ({ page }) => {
+  test("signed out, the home page is the login in Spanish with no prefix", async ({
+    page,
+  }) => {
     await page.goto("/");
 
-    await expect(page).toHaveURL("/");
+    await expect(page).toHaveURL("/login");
     await expect(page.locator("html")).toHaveAttribute("lang", "es");
-    await expect(page.getByRole("heading", { name: "Kurious" })).toBeVisible();
-    const map = page.getByRole("region", { name: "Mapa del viaje" });
-    await expect(map).toBeVisible();
-    // MapLibre's CSS once collapsed the map to 0 px high.
-    const viewport = page.viewportSize();
-    expect((await map.boundingBox())?.height).toBe(viewport?.height);
-    await expect(page.locator("canvas.maplibregl-canvas")).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: "Hola de nuevo" }),
+    ).toBeVisible();
   });
 });
 
@@ -24,11 +22,8 @@ test.describe("browser in Portuguese", () => {
   test("is sent to /pt", async ({ page }) => {
     await page.goto("/");
 
-    await expect(page).toHaveURL("/pt");
+    await expect(page).toHaveURL("/pt/login");
     await expect(page.locator("html")).toHaveAttribute("lang", "pt");
-    await expect(
-      page.getByRole("region", { name: "Mapa da viagem" }),
-    ).toBeVisible();
   });
 });
 

@@ -6,6 +6,8 @@ export type AuthErrorKey =
   | "rateLimit"
   | "signupDisabled"
   | "linkInvalid"
+  | "resetLinkInvalid"
+  | "samePassword"
   | "notConfigured"
   | "generic";
 
@@ -20,6 +22,8 @@ const BY_CODE: Record<string, AuthErrorKey> = {
   signup_disabled: "signupDisabled",
   email_provider_disabled: "signupDisabled",
   otp_expired: "linkInvalid",
+  same_password: "samePassword",
+  session_not_found: "resetLinkInvalid",
 };
 
 export function authErrorKey(code: string | undefined): AuthErrorKey {

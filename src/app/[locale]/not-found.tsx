@@ -10,7 +10,7 @@ export default function NotFoundPage() {
         {t("title")}
       </h1>
       <Link
-        href="/"
+        href="/start"
         className="bg-forest-dark text-cream rounded-xl px-4 py-2 font-bold"
       >
         {t("back")}

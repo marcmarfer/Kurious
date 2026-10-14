@@ -250,6 +250,10 @@ otp_expiry = 3600
 subject = "Activa tu cuenta de Kurious"
 content_path = "./supabase/templates/confirmation.html"
 
+[auth.email.template.recovery]
+subject = "Elige una contraseña nueva en Kurious"
+content_path = "./supabase/templates/recovery.html"
+
 # Uncomment to customize email template
 # [auth.email.template.invite]
 # subject = "You have been invited"

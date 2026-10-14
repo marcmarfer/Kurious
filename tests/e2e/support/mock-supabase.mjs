@@ -1,4 +1,4 @@
-// In-memory stand-in for Supabase Auth with only what the app calls.
+// In-memory stand-in for Supabase Auth with only what the app calls. Nobody has trips yet.
 // GET /__mock/email?to=<address> returns the token_hash of the last confirmation email.
 
 import { createHmac, randomBytes, randomUUID } from "node:crypto";
@@ -134,6 +134,7 @@ const routes = {
     return user ? [200, publicUser(user)] : fail(403, "bad_jwt", "invalid JWT");
   },
   "POST /auth/v1/logout": () => [204, null],
+  "GET /rest/v1/trip_members": () => [200, []],
 };
 
 const server = createServer(async (req, res) => {

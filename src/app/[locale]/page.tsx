@@ -1,25 +1,26 @@
-import { useTranslations } from "next-intl";
-import { AccountMenu } from "@/features/auth/account-menu";
-import { MapView } from "@/features/map/map-view";
+import { getLocale } from "next-intl/server";
+import { cookies } from "next/headers";
+import { redirect as joinRedirect } from "next/navigation";
+import { getCurrentUser } from "@/features/auth/session";
+import { INVITE_COOKIE, invitePath } from "@/features/trips/invites";
+import { getMyTrips } from "@/features/trips/queries";
+import { isUuid } from "@/features/trips/validation";
+import { redirect } from "@/i18n/navigation";
 
-export default function HomePage() {
-  const t = useTranslations("Home");
+export default async function HomePage() {
+  const locale = await getLocale();
+  if (!(await getCurrentUser())) return redirect({ href: "/login", locale });
 
-  return (
-    <main className="relative flex-1">
-      <MapView className="absolute inset-0" label={t("mapLabel")} />
-      <div className="pointer-events-none absolute inset-x-4 top-4 flex items-start gap-3">
-        <header className="shadow-card border-line bg-cream/95 pointer-events-auto max-w-sm min-w-0 flex-1 rounded-2xl border px-4 py-3">
-          <h1 className="font-display text-forest-dark text-2xl font-semibold">
-            Kurious
-          </h1>
-          <p className="text-ink text-sm font-semibold">{t("tagline")}</p>
-          <p className="text-muted text-sm">{t("intro")}</p>
-        </header>
-        <div className="pointer-events-auto ml-auto shrink-0">
-          <AccountMenu />
-        </div>
-      </div>
-    </main>
-  );
+  const invite = (await cookies()).get(INVITE_COOKIE)?.value;
+  if (isUuid(invite)) joinRedirect(invitePath(invite));
+  const trips = await getMyTrips();
+  return redirect({
+    href:
+      trips.length === 0
+        ? "/start"
+        : trips.length === 1
+          ? `/trips/${trips[0].id}`
+          : "/trips",
+    locale,
+  });
 }

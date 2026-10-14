@@ -34,7 +34,7 @@ test.describe("in Spanish", () => {
     );
     const { token_hash } = await inbox.json();
     await page.goto(`/auth/confirm?token_hash=${token_hash}&type=email`);
-    await expect(page).toHaveURL("/");
+    await expect(page).toHaveURL("/trips/new");
     await expect(page.getByLabel("Tu cuenta")).toHaveText("A");
 
     await page.getByLabel("Tu cuenta").click();
@@ -55,11 +55,11 @@ test.describe("in Spanish", () => {
 
     await page.getByLabel("Contraseña", { exact: true }).fill(password);
     await page.getByRole("button", { name: "Entrar" }).click();
-    await expect(page).toHaveURL("/");
+    await expect(page).toHaveURL("/trips/new");
     await expect(page.getByLabel("Tu cuenta")).toHaveText("A");
 
     await page.goto("/login");
-    await expect(page).toHaveURL("/");
+    await expect(page).toHaveURL("/trips/new");
   });
 
   test("a used confirmation link explains what happened", async ({ page }) => {
@@ -72,6 +72,15 @@ test.describe("in Spanish", () => {
           "El enlace ha caducado o ya se usó. Entra, o crea la cuenta de nuevo.",
       }),
     ).toBeVisible();
+  });
+
+  test("a signed-out visit to an idea keeps the idea for after login", async ({
+    page,
+  }) => {
+    const idea = "/trips/b0000000-0000-4000-8000-000000000001/ideas/d1";
+    await page.goto(idea);
+
+    await expect(page).toHaveURL(`/login?next=${encodeURIComponent(idea)}`);
   });
 });
 

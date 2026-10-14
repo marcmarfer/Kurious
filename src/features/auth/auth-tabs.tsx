@@ -17,6 +17,7 @@ export function AuthTabs() {
   const current: Mode = pathname.startsWith("/signup") ? "signup" : "login";
   const [clicked, setClicked] = useState<{ mode: Mode; from: string }>();
   const active = clicked?.from === pathname ? clicked.mode : current;
+  if (pathname.startsWith("/reset-password")) return null;
 
   return (
     <nav

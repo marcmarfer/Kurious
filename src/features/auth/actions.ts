@@ -9,7 +9,9 @@ import { createClient } from "@/lib/supabase/server";
 import { authErrorKey, type AuthErrorKey } from "./errors";
 import {
   safeNextPath,
+  validateEmail,
   validateLogin,
+  validateNewPassword,
   validateSignup,
   type FieldErrors,
 } from "./validation";
@@ -84,6 +86,46 @@ export async function signUp(
 
   if (data.session) redirect({ href: "/", locale });
   return { status: "check-email", values: { email } };
+}
+
+export async function requestPasswordReset(
+  _prev: AuthFormState,
+  formData: FormData,
+): Promise<AuthFormState> {
+  const email = text(formData, "email");
+  const values = { email };
+
+  const fieldErrors = validateEmail(email);
+  if (fieldErrors) return { status: "error", fieldErrors, values };
+  if (!hasSupabaseEnv)
+    return { status: "error", error: "notConfigured", values };
+
+  const origin = (await headers()).get("origin");
+  const supabase = await createClient();
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: origin ? `${origin}/auth/confirm` : undefined,
+  });
+  if (error && authErrorKey(error.code) === "rateLimit")
+    return { status: "error", error: "rateLimit", values };
+
+  return { status: "check-email", values };
+}
+
+export async function updatePassword(
+  _prev: AuthFormState,
+  formData: FormData,
+): Promise<AuthFormState> {
+  const password = String(formData.get("password") ?? "");
+
+  const fieldErrors = validateNewPassword(password);
+  if (fieldErrors) return { status: "error", fieldErrors };
+  if (!hasSupabaseEnv) return { status: "error", error: "notConfigured" };
+
+  const supabase = await createClient();
+  const { error } = await supabase.auth.updateUser({ password });
+  if (error) return { status: "error", error: authErrorKey(error.code) };
+
+  return redirect({ href: "/", locale: formLocale(formData) });
 }
 
 export async function signOut(formData: FormData) {

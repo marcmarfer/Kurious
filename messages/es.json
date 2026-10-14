@@ -2,11 +2,6 @@
   "Metadata": {
     "description": "De la lluvia de ideas al plan del viaje, todo en un mapa."
   },
-  "Home": {
-    "tagline": "Stay kurious.",
-    "intro": "De la lluvia de ideas al plan del viaje, todo en un mapa.",
-    "mapLabel": "Mapa del viaje"
-  },
   "NotFound": {
     "title": "Esta página no existe",
     "back": "Volver al mapa"
@@ -38,6 +33,18 @@
     "notConfigured": "El inicio de sesión aún no está conectado. Añade las claves de Supabase en .env.local.",
     "accountLabel": "Tu cuenta",
     "signOut": "Salir",
+    "forgotLink": "¿Has olvidado la contraseña?",
+    "forgotTitle": "Recupera tu contraseña",
+    "forgotSubtitle": "Escribe tu correo y te enviamos un enlace para elegir una nueva.",
+    "forgotSubmit": "Enviar enlace",
+    "forgotPending": "Enviando…",
+    "forgotSentBody": "Si hay una cuenta con <strong>{email}</strong>, te hemos enviado un enlace para elegir una contraseña nueva.",
+    "backToLogin": "Volver a entrar",
+    "resetTitle": "Elige una contraseña nueva",
+    "resetSubtitle": "Al guardarla entras directamente en Kurious.",
+    "newPassword": "Contraseña nueva",
+    "resetSubmit": "Guardar contraseña",
+    "resetPending": "Guardando…",
     "errors": {
       "nameRequired": "Escribe tu nombre.",
       "nameTooLong": "El nombre es demasiado largo.",
@@ -52,7 +59,581 @@
       "signupDisabled": "Ahora mismo no se pueden crear cuentas nuevas.",
       "linkInvalid": "El enlace ha caducado o ya se usó. Entra, o crea la cuenta de nuevo.",
       "notConfigured": "El inicio de sesión aún no está conectado.",
+      "generic": "Algo ha fallado. Vuelve a probar en un momento.",
+      "resetLinkInvalid": "El enlace ha caducado o ya se usó. Pide uno nuevo.",
+      "samePassword": "Esa ya es tu contraseña. Elige una distinta."
+    }
+  },
+  "Trip": {
+    "groupTrip": "Viaje en grupo",
+    "people": "{count, plural, one {# persona} other {# personas}}",
+    "stages": "{count, plural, one {# etapa} other {# etapas}}",
+    "ideas": "{count, plural, one {# idea} other {# ideas}}",
+    "points": "{count, plural, one {# punto} other {# puntos}}",
+    "comments": "{count, plural, one {# comentario} other {# comentarios}}",
+    "stageNumber": "Etapa {number}",
+    "membersLabel": "Personas del viaje: {names}"
+  },
+  "Nav": {
+    "sections": "Secciones",
+    "map": "Mapa",
+    "plan": "Plan",
+    "group": "Grupo",
+    "account": "Tu cuenta: {name}",
+    "signOut": "Cerrar sesión",
+    "backToMap": "Volver al mapa del viaje",
+    "loading": "Cargando…",
+    "trips": "Tus viajes",
+    "tripsTab": "Viajes",
+    "settings": "Ajustes"
+  },
+  "Growth": {
+    "seed": "Semilla",
+    "sprout": "Brote",
+    "sapling": "Arbolito",
+    "araucaria": "Araucaria",
+    "fire": "Araucaria en llamas",
+    "fireShort": "En llamas"
+  },
+  "Kinds": {
+    "place": "Sitio",
+    "route": "Ruta",
+    "food": "Comida",
+    "random": "Random",
+    "plural": {
+      "place": "Sitios",
+      "route": "Rutas",
+      "food": "Comida",
+      "random": "Random"
+    }
+  },
+  "Votes": {
+    "group": "Tu voto",
+    "fire": "Fuego: {count, plural, one {# voto} other {# votos}}",
+    "up": "Me gusta: {count, plural, one {# voto} other {# votos}}",
+    "down": "No me convence: {count, plural, one {# voto} other {# votos}}",
+    "error": "No se pudo guardar tu voto. Vuelve a probar."
+  },
+  "Plan": {
+    "title": "Plan del viaje",
+    "stagesTitle": "Etapas",
+    "emptyTitle": "El plan empieza con una idea",
+    "emptyBody": "Plantad ideas en el mapa y votadlas. Aquí las veréis ordenadas por etapa, con las más votadas arriba.",
+    "toMap": "Ir al mapa",
+    "noDates": "Sin fechas",
+    "stageEmpty": "Aún no hay ideas en esta etapa.",
+    "plantHere": "Plantar una aquí",
+    "unassignedTitle": "Sin etapa",
+    "unassignedHintNoStages": "Cuando creéis etapas podréis repartir estas ideas entre ellas.",
+    "suggest": {
+      "title": "{count, plural, one {Hay # idea sin etapa cerca de {stage}} other {Hay # ideas sin etapa cerca de {stage}}}",
+      "action": "{count, plural, one {Añadirla a {stage}} other {Añadir las # a {stage}}}",
+      "errors": {
+        "signedOut": "Tu sesión ha caducado. Vuelve a entrar.",
+        "forbidden": "No puedes cambiar las ideas de este viaje.",
+        "notFound": "Alguna de esas ideas ya no existe.",
+        "generic": "No se ha podido guardar. Inténtalo otra vez."
+      }
+    },
+    "plant": "Plantar idea",
+    "progressLabel": "Tu votación",
+    "toVoteLeft": "{count, plural, =0 {Lo has votado todo} one {Te queda # idea por votar} other {Te quedan # ideas por votar}}",
+    "progressDetail": "Has votado {done} de {total} · {percent}",
+    "viewLabel": "Ver el plan",
+    "byStage": "Por etapas",
+    "byTrip": "Todo el viaje",
+    "rankingTitle": "Ranking del viaje",
+    "rankingAll": "Ver el ranking entero ({count})",
+    "less": "Ver menos",
+    "more": "{count, plural, one {Ver # idea más} other {Ver # ideas más}}",
+    "noIdeas": "Sin ideas",
+    "pending": "{count} por votar",
+    "allVoted": "Todo votado",
+    "fold": "Plegar {name}",
+    "unfold": "Desplegar {name}",
+    "wins": "Gana: {title}",
+    "winsIn": "Gana en {stage}",
+    "winsTrip": "Gana en {stage} · la más votada del viaje",
+    "leaderMeta": "{points} · {fire, plural, one {# fuego} other {# fuegos}} · {up} me gusta",
+    "noVotes": "Sin votos aún",
+    "toVote": "Por votar",
+    "unassignedSubline": "Ideas que aún no van en ninguna etapa",
+    "summaryLabel": "Resumen del viaje",
+    "winsUnassigned": "La que más gusta sin etapa",
+    "topTrip": "La más votada del viaje"
+  },
+  "Group": {
+    "title": "Grupo",
+    "summary": "{count, plural, one {# persona} other {# personas}} planeando {trip}",
+    "you": "Tú",
+    "roles": {
+      "owner": "Organiza el viaje",
+      "editor": "Planea",
+      "guest": "Invitado"
+    }
+  },
+  "Map3d": {
+    "viewLabel": "Cómo ver el mapa",
+    "map2d": "Mapa 2D",
+    "globe3d": "Globo 3D",
+    "mapLabel": "Mapa del viaje con las etapas numeradas unidas por la ruta y las ideas del grupo plantadas como árboles. Arrastra para moverlo.",
+    "mapLoading": "Cargando el mapa…",
+    "mapFailed": "No se pudo cargar el mapa. Comprueba la conexión y vuelve a probar.",
+    "globeLabel": "Globo terráqueo en 3D con la ruta del viaje y las ideas del grupo. Arrastra para girarlo.",
+    "globeLoading": "Cargando el globo…",
+    "globeFailed": "Este navegador no puede dibujar el globo en 3D. El mapa 2D enseña el mismo viaje.",
+    "treeLabel": "Araucaria en 3D: las ideas votadas cuelgan de las ramas con su etapa del viaje, y las semillas sin votos cuelgan de las raíces. Arrastra para girarla y toca una tarjeta para abrirla.",
+    "treeLoading": "Plantando la araucaria en 3D…",
+    "treeFailed": "Este navegador no puede dibujar la araucaria en 3D. La vista 2D enseña las mismas ideas.",
+    "attribution2d": "© OpenStreetMap · OpenMapTiles · relieve SRTM · MapLibre",
+    "attribution3d": "© OpenStreetMap · Overture Maps · NASA Blue Marble · relieve SRTM",
+    "stageMarker": "Etapa {number}, {name}",
+    "ideaMarker": "{title}, {growth}",
+    "moreIdeas": "{count, plural, one {idea más} other {ideas más}}",
+    "moreSeeds": "{count, plural, one {semilla más} other {semillas más}}"
+  },
+  "Time": {
+    "ago": {
+      "now": "ahora mismo",
+      "minutes": "hace {count} min",
+      "hours": "hace {count} h",
+      "yesterday": "ayer",
+      "days": "{count, plural, one {hace # día} other {hace # días}}",
+      "weeks": "{count, plural, one {hace una semana} other {hace # semanas}}",
+      "months": "{count, plural, one {hace un mes} other {hace # meses}}",
+      "years": "{count, plural, one {hace un año} other {hace # años}}"
+    },
+    "days": "{count, plural, one {# día} other {# días}}"
+  },
+  "NewTrip": {
+    "metaTitle": "Nuevo viaje",
+    "title": "Empieza un viaje",
+    "subtitle": "Ponle nombre y fechas. Después invitas a tu grupo y plantáis ideas en el mapa.",
+    "name": "Nombre del viaje",
+    "namePlaceholder": "Brasil 2027",
+    "startsOn": "Ida",
+    "endsOn": "Vuelta",
+    "datesHint": "¿Aún sin fechas? Déjalas en blanco y las pones más adelante.",
+    "submit": "Crear el viaje",
+    "pending": "Creando el viaje…",
+    "errors": {
+      "nameRequired": "Ponle un nombre al viaje.",
+      "nameTooLong": "El nombre es demasiado largo.",
+      "dateInvalid": "Esa fecha no existe.",
+      "endBeforeStart": "La vuelta tiene que ser después de la ida.",
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar.",
+      "forbidden": "No tienes permiso para hacer esto.",
+      "notFound": "No hemos encontrado lo que buscabas.",
       "generic": "Algo ha fallado. Vuelve a probar en un momento."
+    },
+    "allTrips": "Ver tus viajes",
+    "skip": "Ahora no, ya lo crearé luego"
+  },
+  "MapScreen": {
+    "panelLabel": "Ideas del viaje",
+    "filterLabel": "Filtrar ideas por tipo",
+    "all": "Todas",
+    "chip": "{label} · {count}",
+    "plant": "Plantar una idea",
+    "listTitle": "Ideas del grupo",
+    "byVotes": "Por votos",
+    "selection": "Selección en el mapa",
+    "topVoted": "la más votada",
+    "noVotes": "aún sin votos",
+    "voteToPlant": "vota para plantarla",
+    "noComments": "sin comentarios",
+    "someone": "Alguien",
+    "openIdea": "Ver idea",
+    "openStage": "Ver etapa",
+    "stageHint": "En Plan ves sus ideas ordenadas por votos.",
+    "stageIdeas": "{count, plural, =0 {Todavía sin ideas en esta etapa} one {1 idea: {top}} other {# ideas, con {top}}}",
+    "emptyTitle": "Todavía no hay ideas",
+    "emptyText": "Planta la primera: un sitio, una ruta o algo para comer. Con los votos del grupo crecerá hasta ser una araucaria.",
+    "emptyAction": "Plantar la primera idea",
+    "emptyFilter": "Todavía no hay ideas de este tipo.",
+    "unplaced": "{count, plural, one {# idea sin sitio en el mapa} other {# ideas sin sitio en el mapa}}"
+  },
+  "Idea": {
+    "mapLabel": "Mapa de la idea «{title}» con su sitio o su recorrido. Arrastra para moverlo.",
+    "length": "{length} de recorrido",
+    "noPlace": "Aún sin sitio en el mapa",
+    "someone": "Alguien",
+    "growthLabel": "Cómo ha crecido la idea",
+    "trackLabel": "Crecimiento: semilla, brote, arbolito, araucaria y en llamas. Ahora está en {growth}.",
+    "growthText": {
+      "seed": "Un piñón plantado {ago}. {missing, plural, one {Le falta # punto para brotar.} other {Le faltan # puntos para brotar.}}",
+      "sprout": "Nació como piñón {ago}. {missing, plural, one {Le falta # punto para ser arbolito.} other {Le faltan # puntos para ser arbolito.}}",
+      "sapling": "Nació como piñón {ago}. {missing, plural, one {Le falta # punto para ser araucaria.} other {Le faltan # puntos para ser araucaria.}}",
+      "araucaria": "Nació como piñón {ago}. Con más fuego puede ser la más votada del viaje.",
+      "fire": "La idea más votada del viaje. Nació como piñón {ago}."
+    },
+    "pointsUnit": "{count, plural, one {punto} other {puntos}}",
+    "voteNote": {
+      "fire": "Tu fuego vale triple",
+      "up": "Te gusta",
+      "down": "No te convence",
+      "none": "Aún no has votado"
+    },
+    "sourceLabel": "Abrir {host} en otra pestaña",
+    "comments": "Comentarios",
+    "noComments": "Todavía no hay comentarios. Cuenta qué te parece la idea.",
+    "showAll": "{count, plural, one {Ver el comentario} other {Ver los # comentarios}}",
+    "composer": "Escribe un comentario",
+    "send": "Enviar comentario",
+    "errors": {
+      "bodyRequired": "Escribe algo antes de enviarlo.",
+      "bodyTooLong": "El comentario es demasiado largo: como mucho {max} caracteres.",
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar para comentar.",
+      "forbidden": "No puedes comentar en este viaje.",
+      "notFound": "Esta idea ya no existe.",
+      "generic": "No se pudo enviar el comentario. Vuelve a probar."
+    },
+    "attribution": "Mapa: © colaboradores de OpenStreetMap, OpenMapTiles y OpenFreeMap, relieve Mapzen Terrarium (SRTM), dibujado con MapLibre.",
+    "place": {
+      "add": "Poner en el mapa",
+      "hintTap": "Toca el mapa donde va la idea.",
+      "hintMove": "Toca otro punto si quieres afinar.",
+      "save": "Guardar sitio",
+      "saving": "Guardando…",
+      "cancel": "Cancelar"
+    }
+  },
+  "Plant": {
+    "title": "Plantar una idea",
+    "link": {
+      "label": "Pega un enlace",
+      "placeholder": "TikTok, Instagram, Maps o una web",
+      "optional": "opcional",
+      "edit": "Cambiar el enlace",
+      "remove": "Quitar el enlace",
+      "untitled": "Ponle nombre a la idea aquí abajo"
+    },
+    "guide": "Ponle nombre y <b>sitúala en el mapa</b>: así el grupo sabe dónde va a crecer.",
+    "name": {
+      "label": "Nombre de la idea",
+      "placeholder": "Mirador escondido cerca de Curitiba"
+    },
+    "kind": "¿Qué es?",
+    "stage": {
+      "label": "Etapa",
+      "none": "Sin etapa",
+      "add": "Nueva etapa",
+      "placeholder": "Nombre de la etapa",
+      "create": "Crear etapa",
+      "cancel": "Cancelar",
+      "newTitle": "Nueva etapa",
+      "hintPlaced": "La situaremos donde has puesto la idea. Las fechas, luego desde Plan.",
+      "hintLater": "Las fechas y el sitio los puedes poner luego desde Plan."
+    },
+    "note": {
+      "label": "Nota",
+      "optional": "opcional",
+      "placeholder": "Por qué te gusta, horarios, precio…"
+    },
+    "place": {
+      "ask": "¿Dónde está? Sitúala:",
+      "photo": "Una foto",
+      "byHand": "A mano",
+      "set": "Situada en el mapa",
+      "fromPhoto": "Situada donde se hizo la foto",
+      "none": "Sin sitio también se puede plantar, pero en el mapa luce más.",
+      "remove": "Quitar el sitio",
+      "reading": "Leyendo la foto…",
+      "noGps": "Esta foto no guarda dónde se hizo. Sitúala a mano en el mapa.",
+      "unreadable": "No he podido leer la foto. Prueba con un JPG o sitúala a mano."
+    },
+    "hint": {
+      "tap": "Toca el mapa para plantar la semilla",
+      "move": "Toca otro sitio para moverla"
+    },
+    "mapLabel": "Mapa del viaje: toca para situar la idea",
+    "submit": {
+      "inStage": "Plantar en {stage}",
+      "plain": "Plantar idea",
+      "pending": "Plantando…",
+      "needsName": "Ponle nombre para poder plantarla"
+    },
+    "errors": {
+      "kindInvalid": "Elige qué tipo de idea es.",
+      "titleRequired": "Ponle un nombre a la idea.",
+      "titleTooLong": "El nombre es demasiado largo (máximo {max} caracteres).",
+      "noteTooLong": "La nota es demasiado larga (máximo {max} caracteres).",
+      "urlInvalid": "Ese enlace no parece válido. Revísalo o déjalo vacío.",
+      "stageInvalid": "Esa etapa ya no existe. Elige otra.",
+      "placeInvalid": "No se ha podido leer el sitio. Vuelve a situarla en el mapa.",
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar para plantarla.",
+      "forbidden": "No puedes plantar ideas en este viaje.",
+      "notFound": "Este viaje ya no existe.",
+      "generic": "No se ha podido plantar la idea. Inténtalo otra vez."
+    },
+    "search": {
+      "label": "Buscar el sitio",
+      "found": "Ya estás allí: toca el mapa justo donde está para plantar la semilla.",
+      "placeholder": "Busca un sitio…",
+      "example1": "Cataratas do Iguaçu…",
+      "example2": "Un bar en Salvador…",
+      "example3": "Una playa escondida…"
+    }
+  },
+  "WorkInProgress": {
+    "title": "En obras",
+    "globe": "El globo en 3D todavía está en obras. Mientras tanto, usa el mapa 2D.",
+    "back": "Volver a 2D"
+  },
+  "Trips": {
+    "metaTitle": "Viajes",
+    "title": "Tus viajes",
+    "subtitle": "Los que estáis preparando y los que ya habéis hecho.",
+    "new": "Nuevo viaje",
+    "active": "En marcha",
+    "done": "Realizados",
+    "emptyActive": "Aún no tienes ningún viaje. Empieza uno nuevo, o pide a tu grupo el enlace de invitación del suyo para unirte.",
+    "noDates": "Sin fechas",
+    "edit": "Editar",
+    "editLabel": "Editar {name}",
+    "role": {
+      "owner": "Lo organizas tú",
+      "editor": "Puedes editar",
+      "guest": "Participas"
+    },
+    "inviteInvalid": "Ese enlace de invitación ya no vale. Pide uno nuevo a quien organiza el viaje.",
+    "current": "Seleccionado"
+  },
+  "EditTrip": {
+    "metaTitle": "Editar viaje",
+    "title": "Editar el viaje",
+    "subtitle": "Cambia el nombre o las fechas. Las ideas y los votos se quedan como están.",
+    "submit": "Guardar cambios",
+    "pending": "Guardando…",
+    "back": "Volver a tus viajes"
+  },
+  "Removal": {
+    "cancel": "Cancelar",
+    "pending": "Eliminando…",
+    "typeToConfirm": "Escribe «{text}» para confirmar",
+    "errors": {
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar.",
+      "forbidden": "No tienes permiso para hacer esto.",
+      "notFound": "No hemos encontrado lo que buscabas.",
+      "generic": "Algo ha fallado. Vuelve a probar en un momento."
+    },
+    "idea": {
+      "action": "Eliminar idea",
+      "title": "¿Eliminar esta idea?",
+      "body": "Se quitará del mapa y del árbol junto con sus votos y comentarios.",
+      "bodyVoted": "Ya tiene {count, plural, one {# voto} other {# votos}} del grupo. Se quitará del mapa y del árbol junto con sus votos y comentarios.",
+      "deleted": "Idea eliminada",
+      "undo": "Deshacer",
+      "undoFailed": "No se ha podido recuperar la idea.",
+      "dismiss": "Cerrar aviso"
+    },
+    "comment": {
+      "action": "Eliminar comentario",
+      "title": "¿Eliminar este comentario?",
+      "body": "Se borrará para todo el grupo. No se puede deshacer.",
+      "confirm": "Eliminar"
+    },
+    "trip": {
+      "title": "Eliminar el viaje",
+      "hint": "Borra el viaje para todo el grupo, con todas sus ideas, votos, comentarios y etapas.",
+      "action": "Eliminar viaje",
+      "confirmTitle": "¿Eliminar «{name}»?",
+      "body": "Se borrará para todo el grupo, con todas sus ideas, votos, comentarios y etapas. No se puede deshacer."
+    },
+    "leave": {
+      "action": "Salir del viaje",
+      "title": "¿Salir de «{name}»?",
+      "body": "Dejarás de ver el viaje. Tus ideas y votos se quedan para el grupo. Para volver, tendrán que invitarte otra vez."
+    },
+    "member": {
+      "action": "Quitar",
+      "label": "Quitar a {name} del viaje",
+      "title": "¿Quitar a {name} del viaje?",
+      "body": "Dejará de ver el viaje y el enlace de invitación actual ya no le servirá: para volver necesitará uno nuevo. Sus ideas y votos se quedan para el grupo.",
+      "confirm": "Quitar del viaje"
+    }
+  },
+  "Settings": {
+    "metaTitle": "Ajustes",
+    "title": "Ajustes de la cuenta",
+    "name": "Nombre",
+    "deleteTitle": "Eliminar la cuenta",
+    "deleteHint": "Se borran tu cuenta y tu perfil. Los viajes que organizas pasan a otra persona del grupo, y los que no comparte nadie más se borran. Tus ideas y comentarios se quedan en los viajes, sin tu nombre.",
+    "deleteAction": "Eliminar mi cuenta",
+    "deleteConfirmTitle": "¿Eliminar tu cuenta?",
+    "deleteBody": "No se puede deshacer.",
+    "signOut": "Cerrar sesión",
+    "tagsTitle": "Tu forma de viajar",
+    "tagsHint": "Elige hasta {max}. Las verá tu grupo.",
+    "save": "Guardar cambios",
+    "saving": "Guardando…",
+    "saved": "Guardado",
+    "back": "Volver",
+    "errors": {
+      "nameRequired": "Escribe tu nombre.",
+      "nameTooLong": "El nombre es demasiado largo.",
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar.",
+      "forbidden": "No tienes permiso para hacer esto.",
+      "notFound": "No hemos encontrado lo que buscabas.",
+      "generic": "Algo ha fallado. Vuelve a probar en un momento."
+    },
+    "editShort": "Editar",
+    "cancel": "Cancelar",
+    "noTags": "Aún no has elegido ninguna.",
+    "editName": "Editar nombre",
+    "editTags": "Editar tu forma de viajar",
+    "avatarColor": "Color de tu avatar",
+    "avatarAuto": "Automático"
+  },
+  "TravelerTags": {
+    "adventure": "Aventura",
+    "relax": "Relax",
+    "food": "Gastronomía",
+    "culture": "Cultura",
+    "nature": "Naturaleza",
+    "beach": "Playa",
+    "mountains": "Montaña",
+    "city": "Ciudad",
+    "nightlife": "Fiesta",
+    "photography": "Fotografía",
+    "budget": "Low cost",
+    "comfort": "Comodidad",
+    "planner": "Lo planifica todo",
+    "spontaneous": "Improvisa",
+    "early_riser": "Madruga",
+    "road_trip": "Ruta en coche"
+  },
+  "IdeaEdit": {
+    "action": "Editar idea",
+    "title": "Nombre de la idea",
+    "note": "Nota",
+    "notePlaceholder": "Por qué te gusta, horarios, precio…",
+    "save": "Guardar cambios",
+    "saving": "Guardando…",
+    "cancel": "Cancelar",
+    "stage": "Etapa",
+    "noStage": "Sin etapa",
+    "errors": {
+      "titleRequired": "Ponle un nombre a la idea.",
+      "titleTooLong": "El nombre es demasiado largo (máximo {max} caracteres).",
+      "noteTooLong": "La nota es demasiado larga (máximo {max} caracteres).",
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar.",
+      "forbidden": "No puedes editar esta idea.",
+      "notFound": "Esta idea ya no existe.",
+      "generic": "No se ha podido guardar. Inténtalo otra vez."
+    }
+  },
+  "AvatarColors": {
+    "forest": "Verde bosque",
+    "ochre": "Ocre",
+    "rust": "Teja",
+    "olive": "Oliva",
+    "moss": "Musgo",
+    "pinhao": "Piñón",
+    "lagoon": "Laguna",
+    "plum": "Ciruela"
+  },
+  "Invite": {
+    "title": "Invita a tu grupo",
+    "hint": "Comparte este enlace: quien lo abra se une al viaje y puede plantar ideas y votar.",
+    "create": "Crear enlace de invitación",
+    "creating": "Creando…",
+    "copy": "Copiar enlace",
+    "copied": "Copiado",
+    "share": "Compartir",
+    "revoke": "Anular enlace",
+    "expires": "Vale hasta el {date}.",
+    "shareText": "Únete a {trip} en Kurious",
+    "failed": "No se ha podido. Vuelve a probar en un momento."
+  },
+  "NoTrip": {
+    "action": "Nuevo viaje",
+    "mapLabel": "Mapa del mundo. Aún no tienes ningún viaje.",
+    "map": {
+      "title": "Tu mapa está por estrenar",
+      "body": "Crea un viaje y aquí plantaréis las ideas del grupo, cada una en su sitio."
+    },
+    "plan": {
+      "title": "Todavía no hay plan",
+      "body": "Crea un viaje y las ideas más votadas se irán ordenando por etapas."
+    },
+    "group": {
+      "title": "Tu grupo empieza contigo",
+      "body": "Crea un viaje para invitar a tu gente, o pídeles el enlace de invitación del suyo."
+    }
+  },
+  "Stages": {
+    "add": "Añadir etapa",
+    "empty": "Divide el viaje en etapas (ciudades o zonas por las que pasáis) para ordenar las ideas y ver la ruta en el mapa.",
+    "noPlace": "sin sitio en el mapa",
+    "newTitle": "Nueva etapa",
+    "editTitle": "Editar etapa",
+    "back": "Volver al plan",
+    "guide": "Ponle nombre y sitúala en el mapa: busca el sitio o toca donde cae.",
+    "mapLabel": "Mapa para situar la etapa. Toca el punto donde está.",
+    "hint": {
+      "tap": "Toca el mapa para situar la etapa",
+      "move": "Toca otro punto para moverla"
+    },
+    "name": {
+      "label": "Nombre de la etapa",
+      "placeholder": "Río de Janeiro"
+    },
+    "startsOn": "Llegada",
+    "endsOn": "Salida",
+    "datesHint": "Las fechas son opcionales; puedes ponerlas más adelante.",
+    "place": {
+      "set": "Situada en el mapa.",
+      "unset": "Aún sin sitio en el mapa.",
+      "remove": "Quitar sitio"
+    },
+    "create": "Crear etapa",
+    "save": "Guardar cambios",
+    "saving": "Guardando…",
+    "editLabel": "Editar {name}",
+    "dragLabel": "Arrastrar {name} para cambiar el orden",
+    "dragHint": "Arrastra para reordenar (o usa las flechas arriba y abajo)",
+    "color": {
+      "label": "Color de la etapa",
+      "hint": "Las ideas de esta etapa llevarán este color en el mapa.",
+      "lagoon": "Azul laguna",
+      "plum": "Ciruela",
+      "ochre": "Ámbar",
+      "berry": "Frambuesa",
+      "sky": "Azul cielo",
+      "forest": "Verde bosque",
+      "clay": "Teja",
+      "slate": "Gris pizarra"
+    },
+    "delete": {
+      "action": "Eliminar etapa",
+      "title": "¿Eliminar la etapa {name}?",
+      "body": "Las ideas de esta etapa no se borran: se quedan en el viaje sin etapa."
+    },
+    "errors": {
+      "nameRequired": "Ponle un nombre a la etapa.",
+      "nameTooLong": "El nombre es demasiado largo (máximo {max} caracteres).",
+      "dateInvalid": "Revisa la fecha.",
+      "endBeforeStart": "La salida no puede ser antes de la llegada.",
+      "placeInvalid": "Ese sitio no vale. Vuelve a tocar el mapa.",
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar.",
+      "forbidden": "No puedes cambiar las etapas de este viaje.",
+      "notFound": "Esta etapa ya no existe.",
+      "generic": "No se ha podido guardar. Inténtalo otra vez."
+    }
+  },
+  "Moves": {
+    "undo": "Deshacer",
+    "redo": "Rehacer",
+    "dismiss": "Cerrar aviso",
+    "label": "Deshacer y rehacer movimientos",
+    "undoHint": "Deshacer (Ctrl+Z)",
+    "redoHint": "Rehacer (Ctrl+Y)",
+    "errors": {
+      "signedOut": "Tu sesión ha caducado. Vuelve a entrar.",
+      "forbidden": "No puedes mover esta idea.",
+      "notFound": "Esta idea ya no existe.",
+      "generic": "No se ha podido mover la idea."
     }
   }
 }

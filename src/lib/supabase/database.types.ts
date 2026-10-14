@@ -7,23 +7,94 @@ export type Json =
   | Json[];
 
 export type Database = {
-  // Allows to automatically instantiate createClient with right options
-  // instead of createClient<Database, { PostgrestVersion: 'XX' }>(URL, KEY)
-  __InternalSupabase: {
-    PostgrestVersion: "14.18";
+  graphql_public: {
+    Tables: {
+      [_ in never]: never;
+    };
+    Views: {
+      [_ in never]: never;
+    };
+    Functions: {
+      graphql: {
+        Args: {
+          extensions?: Json;
+          operationName?: string;
+          query?: string;
+          variables?: Json;
+        };
+        Returns: Json;
+      };
+    };
+    Enums: {
+      [_ in never]: never;
+    };
+    CompositeTypes: {
+      [_ in never]: never;
+    };
   };
   public: {
     Tables: {
+      comments: {
+        Row: {
+          author_id: string | null;
+          body: string;
+          created_at: string;
+          id: string;
+          idea_id: string;
+          updated_at: string;
+        };
+        Insert: {
+          author_id?: string | null;
+          body: string;
+          created_at?: string;
+          id?: string;
+          idea_id: string;
+          updated_at?: string;
+        };
+        Update: {
+          author_id?: string | null;
+          body?: string;
+          created_at?: string;
+          id?: string;
+          idea_id?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "comments_idea_id_fkey";
+            columns: ["idea_id"];
+            isOneToOne: false;
+            referencedRelation: "idea_scores";
+            referencedColumns: ["idea_id"];
+          },
+          {
+            foreignKeyName: "comments_idea_id_fkey";
+            columns: ["idea_id"];
+            isOneToOne: false;
+            referencedRelation: "ideas";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "comments_idea_id_fkey";
+            columns: ["idea_id"];
+            isOneToOne: false;
+            referencedRelation: "trip_ideas";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       ideas: {
         Row: {
           author_id: string | null;
           created_at: string;
+          deleted_at: string | null;
           geom: unknown;
           id: string;
           kind: string;
           last_voted_at: string | null;
           note: string | null;
           source_url: string | null;
+          stage_id: string | null;
           title: string;
           trip_id: string;
           updated_at: string;
@@ -32,12 +103,14 @@ export type Database = {
         Insert: {
           author_id?: string | null;
           created_at?: string;
+          deleted_at?: string | null;
           geom?: unknown;
           id?: string;
           kind: string;
           last_voted_at?: string | null;
           note?: string | null;
           source_url?: string | null;
+          stage_id?: string | null;
           title: string;
           trip_id: string;
           updated_at?: string;
@@ -46,18 +119,34 @@ export type Database = {
         Update: {
           author_id?: string | null;
           created_at?: string;
+          deleted_at?: string | null;
           geom?: unknown;
           id?: string;
           kind?: string;
           last_voted_at?: string | null;
           note?: string | null;
           source_url?: string | null;
+          stage_id?: string | null;
           title?: string;
           trip_id?: string;
           updated_at?: string;
           withered_at?: string | null;
         };
         Relationships: [
+          {
+            foreignKeyName: "ideas_stage_id_fkey";
+            columns: ["stage_id", "trip_id"];
+            isOneToOne: false;
+            referencedRelation: "stages";
+            referencedColumns: ["id", "trip_id"];
+          },
+          {
+            foreignKeyName: "ideas_stage_id_fkey";
+            columns: ["stage_id", "trip_id"];
+            isOneToOne: false;
+            referencedRelation: "trip_stages";
+            referencedColumns: ["id", "trip_id"];
+          },
           {
             foreignKeyName: "ideas_trip_id_fkey";
             columns: ["trip_id"];
@@ -69,27 +158,112 @@ export type Database = {
       };
       profiles: {
         Row: {
+          avatar_color: string | null;
           avatar_url: string | null;
           created_at: string;
           id: string;
           name: string;
+          traveler_tags: string[];
           updated_at: string;
         };
         Insert: {
+          avatar_color?: string | null;
           avatar_url?: string | null;
           created_at?: string;
           id: string;
           name?: string;
+          traveler_tags?: string[];
           updated_at?: string;
         };
         Update: {
+          avatar_color?: string | null;
           avatar_url?: string | null;
           created_at?: string;
           id?: string;
           name?: string;
+          traveler_tags?: string[];
           updated_at?: string;
         };
         Relationships: [];
+      };
+      stages: {
+        Row: {
+          color: string | null;
+          created_at: string;
+          ends_on: string | null;
+          geom: unknown;
+          id: string;
+          name: string;
+          position: number;
+          starts_on: string | null;
+          trip_id: string;
+          updated_at: string;
+        };
+        Insert: {
+          color?: string | null;
+          created_at?: string;
+          ends_on?: string | null;
+          geom?: unknown;
+          id?: string;
+          name: string;
+          position: number;
+          starts_on?: string | null;
+          trip_id: string;
+          updated_at?: string;
+        };
+        Update: {
+          color?: string | null;
+          created_at?: string;
+          ends_on?: string | null;
+          geom?: unknown;
+          id?: string;
+          name?: string;
+          position?: number;
+          starts_on?: string | null;
+          trip_id?: string;
+          updated_at?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "stages_trip_id_fkey";
+            columns: ["trip_id"];
+            isOneToOne: false;
+            referencedRelation: "trips";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      trip_invites: {
+        Row: {
+          created_at: string;
+          created_by: string | null;
+          expires_at: string;
+          token: string;
+          trip_id: string;
+        };
+        Insert: {
+          created_at?: string;
+          created_by?: string | null;
+          expires_at?: string;
+          token?: string;
+          trip_id: string;
+        };
+        Update: {
+          created_at?: string;
+          created_by?: string | null;
+          expires_at?: string;
+          token?: string;
+          trip_id?: string;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "trip_invites_trip_id_fkey";
+            columns: ["trip_id"];
+            isOneToOne: false;
+            referencedRelation: "trips";
+            referencedColumns: ["id"];
+          },
+        ];
       };
       trip_members: {
         Row: {
@@ -193,6 +367,13 @@ export type Database = {
             referencedRelation: "ideas";
             referencedColumns: ["id"];
           },
+          {
+            foreignKeyName: "votes_idea_id_fkey";
+            columns: ["idea_id"];
+            isOneToOne: false;
+            referencedRelation: "trip_ideas";
+            referencedColumns: ["id"];
+          },
         ];
       };
     };
@@ -206,6 +387,7 @@ export type Database = {
           stage: string | null;
           trip_id: string | null;
           up: number | null;
+          members: number | null;
         };
         Relationships: [
           {
@@ -217,9 +399,145 @@ export type Database = {
           },
         ];
       };
+      trip_ideas: {
+        Row: {
+          author_id: string | null;
+          author_name: string | null;
+          comment_count: number | null;
+          created_at: string | null;
+          down: number | null;
+          fire: number | null;
+          growth: string | null;
+          id: string | null;
+          kind: string | null;
+          lat: number | null;
+          length_m: number | null;
+          lon: number | null;
+          my_vote: string | null;
+          note: string | null;
+          score: number | null;
+          shape: Json | null;
+          source_url: string | null;
+          stage_id: string | null;
+          title: string | null;
+          trip_id: string | null;
+          up: number | null;
+          members: number | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "ideas_stage_id_fkey";
+            columns: ["stage_id", "trip_id"];
+            isOneToOne: false;
+            referencedRelation: "stages";
+            referencedColumns: ["id", "trip_id"];
+          },
+          {
+            foreignKeyName: "ideas_stage_id_fkey";
+            columns: ["stage_id", "trip_id"];
+            isOneToOne: false;
+            referencedRelation: "trip_stages";
+            referencedColumns: ["id", "trip_id"];
+          },
+          {
+            foreignKeyName: "ideas_trip_id_fkey";
+            columns: ["trip_id"];
+            isOneToOne: false;
+            referencedRelation: "trips";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
+      trip_stages: {
+        Row: {
+          color: string | null;
+          created_at: string | null;
+          ends_on: string | null;
+          id: string | null;
+          lat: number | null;
+          lon: number | null;
+          name: string | null;
+          position: number | null;
+          starts_on: string | null;
+          trip_id: string | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          created_at?: string | null;
+          ends_on?: string | null;
+          id?: string | null;
+          lat?: never;
+          lon?: never;
+          name?: string | null;
+          position?: number | null;
+          starts_on?: string | null;
+          trip_id?: string | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          created_at?: string | null;
+          ends_on?: string | null;
+          id?: string | null;
+          lat?: never;
+          lon?: never;
+          name?: string | null;
+          position?: number | null;
+          starts_on?: string | null;
+          trip_id?: string | null;
+          updated_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "stages_trip_id_fkey";
+            columns: ["trip_id"];
+            isOneToOne: false;
+            referencedRelation: "trips";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
     };
     Functions: {
-      [_ in never]: never;
+      add_stage: {
+        Args: {
+          p_ends_on?: string;
+          p_lat?: number;
+          p_lon?: number;
+          p_name: string;
+          p_starts_on?: string;
+          p_trip_id: string;
+        };
+        Returns: string;
+      };
+      cast_vote: {
+        Args: { p_idea_id: string; p_value: string };
+        Returns: string;
+      };
+      delete_idea: { Args: { p_idea_id: string }; Returns: string };
+      delete_my_account: { Args: never; Returns: undefined };
+      join_trip: { Args: { p_token: string }; Returns: string };
+      move_stage: {
+        Args: { p_stage_id: string; p_up: boolean };
+        Returns: boolean;
+      };
+      plant_idea: {
+        Args: {
+          p_kind: string;
+          p_lat?: number;
+          p_lon?: number;
+          p_note?: string;
+          p_source_url?: string;
+          p_stage_id?: string;
+          p_title: string;
+          p_trip_id: string;
+        };
+        Returns: string;
+      };
+      reorder_stages: {
+        Args: { p_stage_ids: string[]; p_trip_id: string };
+        Returns: undefined;
+      };
+      restore_idea: { Args: { p_idea_id: string }; Returns: string };
     };
     Enums: {
       [_ in never]: never;
@@ -348,6 +666,9 @@ export type CompositeTypes<
     : never;
 
 export const Constants = {
+  graphql_public: {
+    Enums: {},
+  },
   public: {
     Enums: {},
   },

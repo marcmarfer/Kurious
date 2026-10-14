@@ -1,6 +1,13 @@
 import { describe, expect, it } from "vitest";
 import { authErrorKey } from "./errors";
-import { safeNextPath, validateLogin, validateSignup } from "./validation";
+import {
+  safeNextPath,
+  tripReturnPath,
+  validateEmail,
+  validateLogin,
+  validateNewPassword,
+  validateSignup,
+} from "./validation";
 
 describe("validateLogin", () => {
   it("accepts a valid email and any password", () => {
@@ -40,6 +47,30 @@ describe("validateSignup", () => {
   });
 });
 
+describe("password recovery", () => {
+  it("asks for a real email before sending the link", () => {
+    expect(validateEmail("ana@example.com")).toBeNull();
+    expect(validateEmail("ana@")).toEqual({ email: "emailInvalid" });
+  });
+
+  it("holds the new password to the sign-up minimum", () => {
+    expect(validateNewPassword("12345678")).toBeNull();
+    expect(validateNewPassword("1234567")).toEqual({
+      password: "passwordTooShort",
+    });
+  });
+
+  it("never returns to the recovery pages after logging in", () => {
+    expect(safeNextPath("/forgot-password")).toBe("/");
+    expect(safeNextPath("/en/reset-password")).toBe("/");
+  });
+
+  it("names the reused password and the dead link", () => {
+    expect(authErrorKey("same_password")).toBe("samePassword");
+    expect(authErrorKey("session_not_found")).toBe("resetLinkInvalid");
+  });
+});
+
 describe("safeNextPath", () => {
   it.each([
     ["/trips/1", "/trips/1"],
@@ -57,6 +88,23 @@ describe("safeNextPath", () => {
     ["/login-help", "/login-help"],
   ])("%s -> %s", (next, expected) => {
     expect(safeNextPath(next)).toBe(expected);
+  });
+});
+
+describe("tripReturnPath", () => {
+  const trip = "d0000000-0000-4000-8000-0000000000aa";
+
+  it.each([
+    [`/trips/${trip}/ideas/x`, `/trips/${trip}/ideas/x`],
+    [`/en/trips/${trip}/plant?stage=s`, `/trips/${trip}/plant?stage=s`],
+    [`/trips/${trip}?idea=x`, `/trips/${trip}?idea=x`],
+    [`/trips/${trip}`, `/trips/${trip}`],
+    [`/trips/${trip}x/plan`, `/trips/${trip}`],
+    ["/trips/other", `/trips/${trip}`],
+    ["//evil.example", `/trips/${trip}`],
+    [null, `/trips/${trip}`],
+  ])("keeps %s inside the trip", (requested, expected) => {
+    expect(tripReturnPath(requested, trip)).toBe(expected);
   });
 });
 

@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { signIn, type AuthFormState } from "./actions";
 import type { AuthErrorKey } from "./errors";
 import { Field, FormAlert, PasswordInput, SubmitButton } from "./form-parts";
@@ -56,6 +57,12 @@ export function LoginForm({
           />
         )}
       </Field>
+      <Link
+        href="/forgot-password"
+        className="text-forest-dark focus-ring -mt-1 self-end rounded-md text-sm font-bold underline decoration-2 underline-offset-4"
+      >
+        {t("forgotLink")}
+      </Link>
       <div className="pt-2">
         <SubmitButton pending={pending} disabled={disabled}>
           {pending ? t("loginPending") : t("loginSubmit")}

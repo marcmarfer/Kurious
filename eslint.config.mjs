@@ -13,6 +13,7 @@ const eslintConfig = defineConfig([
     ".next-e2e/**",
     ".open-next/**",
     ".wrangler/**",
+    "design/**",
     "cloudflare-env.d.ts",
     "public/vendor/**",
     "playwright-report/**",

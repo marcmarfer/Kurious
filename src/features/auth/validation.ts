@@ -39,8 +39,18 @@ export function validateSignup(input: {
   return Object.keys(errors).length ? errors : null;
 }
 
+export function validateEmail(email: string): FieldErrors | null {
+  return EMAIL.test(email) ? null : { email: "emailInvalid" };
+}
+
+export function validateNewPassword(password: string): FieldErrors | null {
+  return password.length < MIN_PASSWORD_LENGTH
+    ? { password: "passwordTooShort" }
+    : null;
+}
+
 const LOCALE_PREFIX = /^\/(pt|en)(?=[/?#]|$)/;
-const AUTH_PAGE = /^\/(login|signup)(?=[/?#]|$)/;
+const AUTH_PAGE = /^\/(login|signup|forgot-password|reset-password)(?=[/?#]|$)/;
 
 export function safeNextPath(next: string | null | undefined): string {
   if (!next || !next.startsWith("/") || next.startsWith("//")) return "/";
@@ -49,4 +59,19 @@ export function safeNextPath(next: string | null | undefined): string {
   if (!path || path.startsWith("?") || path.startsWith("#")) return `/${path}`;
   if (path.startsWith("//")) return "/";
   return AUTH_PAGE.test(path) ? "/" : path;
+}
+
+export const REQUEST_PATH_HEADER = "x-kurious-path";
+
+export function tripReturnPath(
+  requestPath: string | null | undefined,
+  tripId: string,
+): string {
+  const tripPath = `/trips/${tripId}`;
+  const path = safeNextPath(requestPath);
+  const insideTrip =
+    path === tripPath ||
+    path.startsWith(`${tripPath}/`) ||
+    path.startsWith(`${tripPath}?`);
+  return insideTrip ? path : tripPath;
 }

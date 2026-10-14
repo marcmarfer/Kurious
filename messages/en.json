@@ -2,11 +2,6 @@
   "Metadata": {
     "description": "From brainstorm to trip plan, all on one map."
   },
-  "Home": {
-    "tagline": "Stay kurious.",
-    "intro": "From brainstorm to trip plan, all on one map.",
-    "mapLabel": "Trip map"
-  },
   "NotFound": {
     "title": "This page does not exist",
     "back": "Back to the map"
@@ -38,6 +33,18 @@
     "notConfigured": "Login is not connected yet. Add the Supabase keys to .env.local.",
     "accountLabel": "Your account",
     "signOut": "Log out",
+    "forgotLink": "Forgot your password?",
+    "forgotTitle": "Recover your password",
+    "forgotSubtitle": "Enter your email and we will send you a link to choose a new one.",
+    "forgotSubmit": "Send link",
+    "forgotPending": "Sending…",
+    "forgotSentBody": "If there is an account for <strong>{email}</strong>, we have sent a link to choose a new password.",
+    "backToLogin": "Back to log in",
+    "resetTitle": "Choose a new password",
+    "resetSubtitle": "Once saved you go straight into Kurious.",
+    "newPassword": "New password",
+    "resetSubmit": "Save password",
+    "resetPending": "Saving…",
     "errors": {
       "nameRequired": "Enter your name.",
       "nameTooLong": "That name is too long.",
@@ -52,7 +59,581 @@
       "signupDisabled": "New accounts can't be created right now.",
       "linkInvalid": "The link has expired or was already used. Log in, or create the account again.",
       "notConfigured": "Login is not connected yet.",
+      "generic": "Something went wrong. Try again in a moment.",
+      "resetLinkInvalid": "The link has expired or was already used. Ask for a new one.",
+      "samePassword": "That is already your password. Choose a different one."
+    }
+  },
+  "Trip": {
+    "groupTrip": "Group trip",
+    "people": "{count, plural, one {# person} other {# people}}",
+    "stages": "{count, plural, one {# stop} other {# stops}}",
+    "ideas": "{count, plural, one {# idea} other {# ideas}}",
+    "points": "{count, plural, one {# point} other {# points}}",
+    "comments": "{count, plural, one {# comment} other {# comments}}",
+    "stageNumber": "Stop {number}",
+    "membersLabel": "People on this trip: {names}"
+  },
+  "Nav": {
+    "sections": "Sections",
+    "map": "Map",
+    "plan": "Plan",
+    "group": "Group",
+    "account": "Your account: {name}",
+    "signOut": "Sign out",
+    "backToMap": "Back to the trip map",
+    "loading": "Loading…",
+    "trips": "Your trips",
+    "tripsTab": "Trips",
+    "settings": "Settings"
+  },
+  "Growth": {
+    "seed": "Seed",
+    "sprout": "Sprout",
+    "sapling": "Sapling",
+    "araucaria": "Araucaria",
+    "fire": "Araucaria on fire",
+    "fireShort": "On fire"
+  },
+  "Kinds": {
+    "place": "Place",
+    "route": "Route",
+    "food": "Food",
+    "random": "Random",
+    "plural": {
+      "place": "Places",
+      "route": "Routes",
+      "food": "Food",
+      "random": "Random"
+    }
+  },
+  "Votes": {
+    "group": "Your vote",
+    "fire": "Fire: {count, plural, one {# vote} other {# votes}}",
+    "up": "Like: {count, plural, one {# vote} other {# votes}}",
+    "down": "Not convinced: {count, plural, one {# vote} other {# votes}}",
+    "error": "Your vote could not be saved. Try again."
+  },
+  "Plan": {
+    "title": "Trip plan",
+    "stagesTitle": "Stops",
+    "emptyTitle": "The plan starts with one idea",
+    "emptyBody": "Plant ideas on the map and vote on them. You will see them here sorted by stop, most voted first.",
+    "toMap": "Go to the map",
+    "noDates": "No dates",
+    "stageEmpty": "No ideas in this stop yet.",
+    "plantHere": "Plant one here",
+    "unassignedTitle": "No stop",
+    "unassignedHintNoStages": "Once you create stops you can spread these ideas across them.",
+    "suggest": {
+      "title": "{count, plural, one {There is # idea without a stop near {stage}} other {There are # ideas without a stop near {stage}}}",
+      "action": "{count, plural, one {Add it to {stage}} other {Add all # to {stage}}}",
+      "errors": {
+        "signedOut": "Your session has expired. Log in again.",
+        "forbidden": "You cannot change the ideas of this trip.",
+        "notFound": "One of those ideas no longer exists.",
+        "generic": "Could not save. Try again."
+      }
+    },
+    "plant": "Plant an idea",
+    "progressLabel": "Your voting",
+    "toVoteLeft": "{count, plural, =0 {You have voted on everything} one {# idea left to vote on} other {# ideas left to vote on}}",
+    "progressDetail": "You voted on {done} of {total} · {percent}",
+    "viewLabel": "View the plan",
+    "byStage": "By stop",
+    "byTrip": "Whole trip",
+    "rankingTitle": "Trip ranking",
+    "rankingAll": "See the full ranking ({count})",
+    "less": "See less",
+    "more": "{count, plural, one {See # more idea} other {See # more ideas}}",
+    "noIdeas": "No ideas",
+    "pending": "{count} to vote",
+    "allVoted": "All voted",
+    "fold": "Collapse {name}",
+    "unfold": "Expand {name}",
+    "wins": "Winning: {title}",
+    "winsIn": "Wins in {stage}",
+    "winsTrip": "Wins in {stage} · the most voted of the trip",
+    "leaderMeta": "{points} · {fire, plural, one {# fire} other {# fires}} · {up} likes",
+    "noVotes": "No votes yet",
+    "toVote": "To vote",
+    "unassignedSubline": "Ideas not in any stop yet",
+    "summaryLabel": "Trip summary",
+    "winsUnassigned": "The favourite with no stop",
+    "topTrip": "The most voted of the trip"
+  },
+  "Group": {
+    "title": "Group",
+    "summary": "{count, plural, one {# person} other {# people}} planning {trip}",
+    "you": "You",
+    "roles": {
+      "owner": "Organizes the trip",
+      "editor": "Plans",
+      "guest": "Guest"
+    }
+  },
+  "Map3d": {
+    "viewLabel": "How to see the map",
+    "map2d": "2D map",
+    "globe3d": "3D globe",
+    "mapLabel": "Trip map with the numbered stops joined by the route and the group's ideas planted as trees. Drag to move it.",
+    "mapLoading": "Loading the map…",
+    "mapFailed": "The map could not load. Check your connection and try again.",
+    "globeLabel": "3D globe with the trip route and the group's ideas. Drag to turn it.",
+    "globeLoading": "Loading the globe…",
+    "globeFailed": "This browser cannot draw the 3D globe. The 2D map shows the same trip.",
+    "treeLabel": "3D araucaria: the voted ideas hang from the branches with their stop, and the seeds with no votes hang from the roots. Drag to turn it and tap a card to open it.",
+    "treeLoading": "Planting the 3D araucaria…",
+    "treeFailed": "This browser cannot draw the 3D araucaria. The 2D view shows the same ideas.",
+    "attribution2d": "© OpenStreetMap · OpenMapTiles · SRTM relief · MapLibre",
+    "attribution3d": "© OpenStreetMap · Overture Maps · NASA Blue Marble · SRTM relief",
+    "stageMarker": "Stop {number}, {name}",
+    "ideaMarker": "{title}, {growth}",
+    "moreIdeas": "{count, plural, one {more idea} other {more ideas}}",
+    "moreSeeds": "{count, plural, one {more seed} other {more seeds}}"
+  },
+  "Time": {
+    "ago": {
+      "now": "just now",
+      "minutes": "{count} min ago",
+      "hours": "{count} h ago",
+      "yesterday": "yesterday",
+      "days": "{count, plural, one {# day ago} other {# days ago}}",
+      "weeks": "{count, plural, one {a week ago} other {# weeks ago}}",
+      "months": "{count, plural, one {a month ago} other {# months ago}}",
+      "years": "{count, plural, one {a year ago} other {# years ago}}"
+    },
+    "days": "{count, plural, one {# day} other {# days}}"
+  },
+  "NewTrip": {
+    "metaTitle": "New trip",
+    "title": "Start a trip",
+    "subtitle": "Give it a name and dates. Then invite your group and plant ideas on the map together.",
+    "name": "Trip name",
+    "namePlaceholder": "Brazil 2027",
+    "startsOn": "Leaving",
+    "endsOn": "Back",
+    "datesHint": "No dates yet? Leave them blank and add them later.",
+    "submit": "Create the trip",
+    "pending": "Creating the trip…",
+    "errors": {
+      "nameRequired": "Give the trip a name.",
+      "nameTooLong": "That name is too long.",
+      "dateInvalid": "That date does not exist.",
+      "endBeforeStart": "The way back has to be after you leave.",
+      "signedOut": "Your session has expired. Please log in again.",
+      "forbidden": "You are not allowed to do this.",
+      "notFound": "We could not find what you were looking for.",
+      "generic": "Something went wrong. Please try again in a moment."
+    },
+    "allTrips": "See your trips",
+    "skip": "Not now, I'll create one later"
+  },
+  "MapScreen": {
+    "panelLabel": "Trip ideas",
+    "filterLabel": "Filter ideas by type",
+    "all": "All",
+    "chip": "{label} · {count}",
+    "plant": "Plant an idea",
+    "listTitle": "The group's ideas",
+    "byVotes": "By votes",
+    "selection": "Selected on the map",
+    "topVoted": "the most voted",
+    "noVotes": "no votes yet",
+    "voteToPlant": "vote to plant it",
+    "noComments": "no comments",
+    "someone": "Someone",
+    "openIdea": "See idea",
+    "openStage": "See stop",
+    "stageHint": "In Plan you see its ideas ranked by votes.",
+    "stageIdeas": "{count, plural, =0 {No ideas for this stop yet} one {1 idea: {top}} other {# ideas, including {top}}}",
+    "emptyTitle": "No ideas yet",
+    "emptyText": "Plant the first one: a place, a route or something to eat. With the group's votes it will grow into an araucaria.",
+    "emptyAction": "Plant the first idea",
+    "emptyFilter": "No ideas of this type yet.",
+    "unplaced": "{count, plural, one {# idea with no place on the map} other {# ideas with no place on the map}}"
+  },
+  "Idea": {
+    "mapLabel": "Map of the idea “{title}” with its place or its route. Drag to move it.",
+    "length": "{length} long",
+    "noPlace": "No place on the map yet",
+    "someone": "Someone",
+    "growthLabel": "How the idea has grown",
+    "trackLabel": "Growth: seed, sprout, sapling, araucaria and on fire. It is now at {growth}.",
+    "growthText": {
+      "seed": "A pine nut planted {ago}. {missing, plural, one {# more point to sprout.} other {# more points to sprout.}}",
+      "sprout": "It started as a pine nut {ago}. {missing, plural, one {# more point to become a sapling.} other {# more points to become a sapling.}}",
+      "sapling": "It started as a pine nut {ago}. {missing, plural, one {# more point to become an araucaria.} other {# more points to become an araucaria.}}",
+      "araucaria": "It started as a pine nut {ago}. With more fire it can be the trip’s most voted idea.",
+      "fire": "The most voted idea of the trip. It started as a pine nut {ago}."
+    },
+    "pointsUnit": "{count, plural, one {point} other {points}}",
+    "voteNote": {
+      "fire": "Your fire counts triple",
+      "up": "You like it",
+      "down": "Not convinced",
+      "none": "You have not voted yet"
+    },
+    "sourceLabel": "Open {host} in a new tab",
+    "comments": "Comments",
+    "noComments": "No comments yet. Say what you think of the idea.",
+    "showAll": "{count, plural, one {See the comment} other {See all # comments}}",
+    "composer": "Write a comment",
+    "send": "Send comment",
+    "errors": {
+      "bodyRequired": "Write something before sending it.",
+      "bodyTooLong": "The comment is too long: {max} characters at most.",
+      "signedOut": "Your session has expired. Sign in again to comment.",
+      "forbidden": "You cannot comment on this trip.",
+      "notFound": "This idea no longer exists.",
+      "generic": "The comment could not be sent. Try again."
+    },
+    "attribution": "Map: © OpenStreetMap contributors, OpenMapTiles and OpenFreeMap, Mapzen Terrarium relief (SRTM), drawn with MapLibre.",
+    "place": {
+      "add": "Put on the map",
+      "hintTap": "Tap the map where the idea goes.",
+      "hintMove": "Tap another spot to fine-tune.",
+      "save": "Save place",
+      "saving": "Saving…",
+      "cancel": "Cancel"
+    }
+  },
+  "Plant": {
+    "title": "Plant an idea",
+    "link": {
+      "label": "Paste a link",
+      "placeholder": "TikTok, Instagram, Maps or a web page",
+      "optional": "optional",
+      "edit": "Change the link",
+      "remove": "Remove the link",
+      "untitled": "Give the idea a name below"
+    },
+    "guide": "Give it a name and <b>put it on the map</b>, so the group knows where it will grow.",
+    "name": {
+      "label": "Name of the idea",
+      "placeholder": "Hidden viewpoint near Curitiba"
+    },
+    "kind": "What is it?",
+    "stage": {
+      "label": "Stage",
+      "none": "No stage",
+      "add": "New stop",
+      "placeholder": "Name of the stop",
+      "create": "Create stop",
+      "cancel": "Cancel",
+      "newTitle": "New stop",
+      "hintPlaced": "We will place it where you put the idea. Add dates later in Plan.",
+      "hintLater": "You can add dates and a place later in Plan."
+    },
+    "note": {
+      "label": "Note",
+      "optional": "optional",
+      "placeholder": "Why you like it, opening hours, price…"
+    },
+    "place": {
+      "ask": "Where is it? Place it:",
+      "photo": "A photo",
+      "byHand": "By hand",
+      "set": "Placed on the map",
+      "fromPhoto": "Placed where the photo was taken",
+      "none": "You can plant it without a place, but it shows better on the map.",
+      "remove": "Remove the place",
+      "reading": "Reading the photo…",
+      "noGps": "This photo doesn't say where it was taken. Place it on the map by hand.",
+      "unreadable": "I couldn't read the photo. Try a JPG or place it by hand."
+    },
+    "hint": {
+      "tap": "Tap the map to plant the seed",
+      "move": "Tap somewhere else to move it"
+    },
+    "mapLabel": "Trip map: tap to place the idea",
+    "submit": {
+      "inStage": "Plant in {stage}",
+      "plain": "Plant idea",
+      "pending": "Planting…",
+      "needsName": "Give it a name to plant it"
+    },
+    "errors": {
+      "kindInvalid": "Choose what kind of idea it is.",
+      "titleRequired": "Give the idea a name.",
+      "titleTooLong": "The name is too long (at most {max} characters).",
+      "noteTooLong": "The note is too long (at most {max} characters).",
+      "urlInvalid": "That link doesn't look right. Check it or leave it empty.",
+      "stageInvalid": "That stage no longer exists. Choose another one.",
+      "placeInvalid": "The place couldn't be read. Put it on the map again.",
+      "signedOut": "Your session has expired. Sign in again to plant it.",
+      "forbidden": "You can't plant ideas in this trip.",
+      "notFound": "This trip no longer exists.",
+      "generic": "The idea couldn't be planted. Please try again."
+    },
+    "search": {
+      "label": "Search for the place",
+      "found": "You're there: tap the map right where it is to plant the seed.",
+      "placeholder": "Search for a place…",
+      "example1": "Cataratas do Iguaçu…",
+      "example2": "A bar in Salvador…",
+      "example3": "A hidden beach…"
+    }
+  },
+  "WorkInProgress": {
+    "title": "Work in progress",
+    "globe": "The 3D globe is still being built. In the meantime, use the 2D map.",
+    "back": "Back to 2D"
+  },
+  "Trips": {
+    "metaTitle": "Trips",
+    "title": "Your trips",
+    "subtitle": "The ones you are planning and the ones you have already taken.",
+    "new": "New trip",
+    "active": "In progress",
+    "done": "Completed",
+    "emptyActive": "You have no trips yet. Start a new one, or ask your group for the invite link to theirs to join.",
+    "noDates": "No dates",
+    "edit": "Edit",
+    "editLabel": "Edit {name}",
+    "role": {
+      "owner": "You organize it",
+      "editor": "You can edit",
+      "guest": "You take part"
+    },
+    "inviteInvalid": "That invite link is no longer valid. Ask the trip organizer for a new one.",
+    "current": "Selected"
+  },
+  "EditTrip": {
+    "metaTitle": "Edit trip",
+    "title": "Edit the trip",
+    "subtitle": "Change the name or the dates. Ideas and votes stay as they are.",
+    "submit": "Save changes",
+    "pending": "Saving…",
+    "back": "Back to your trips"
+  },
+  "Removal": {
+    "cancel": "Cancel",
+    "pending": "Deleting…",
+    "typeToConfirm": "Type “{text}” to confirm",
+    "errors": {
+      "signedOut": "Your session has expired. Sign in again.",
+      "forbidden": "You don't have permission to do this.",
+      "notFound": "We couldn't find what you were looking for.",
       "generic": "Something went wrong. Try again in a moment."
+    },
+    "idea": {
+      "action": "Delete idea",
+      "title": "Delete this idea?",
+      "body": "It will be removed from the map and the tree, along with its votes and comments.",
+      "bodyVoted": "It already has {count, plural, one {# vote} other {# votes}} from the group. It will be removed from the map and the tree, along with its votes and comments.",
+      "deleted": "Idea deleted",
+      "undo": "Undo",
+      "undoFailed": "We couldn't bring the idea back.",
+      "dismiss": "Close notice"
+    },
+    "comment": {
+      "action": "Delete comment",
+      "title": "Delete this comment?",
+      "body": "It will be deleted for the whole group. This can't be undone.",
+      "confirm": "Delete"
+    },
+    "trip": {
+      "title": "Delete the trip",
+      "hint": "Deletes the trip for the whole group, with all its ideas, votes, comments and stages.",
+      "action": "Delete trip",
+      "confirmTitle": "Delete “{name}”?",
+      "body": "It will be deleted for the whole group, with all its ideas, votes, comments and stages. This can't be undone."
+    },
+    "leave": {
+      "action": "Leave trip",
+      "title": "Leave “{name}”?",
+      "body": "You will no longer see the trip. Your ideas and votes stay with the group. To come back, someone will have to invite you again."
+    },
+    "member": {
+      "action": "Remove",
+      "label": "Remove {name} from the trip",
+      "title": "Remove {name} from the trip?",
+      "body": "They will no longer see the trip and the current invite link will stop working for them: to come back they will need a new one. Their ideas and votes stay with the group.",
+      "confirm": "Remove from trip"
+    }
+  },
+  "Settings": {
+    "metaTitle": "Settings",
+    "title": "Account settings",
+    "name": "Name",
+    "deleteTitle": "Delete the account",
+    "deleteHint": "Your account and profile are deleted. Trips you organize pass to someone else in the group, and trips nobody else shares are deleted. Your ideas and comments stay in the trips, without your name.",
+    "deleteAction": "Delete my account",
+    "deleteConfirmTitle": "Delete your account?",
+    "deleteBody": "This can't be undone.",
+    "signOut": "Sign out",
+    "tagsTitle": "How you travel",
+    "tagsHint": "Pick up to {max}. Your group will see them.",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "back": "Back",
+    "errors": {
+      "nameRequired": "Write your name.",
+      "nameTooLong": "The name is too long.",
+      "signedOut": "Your session has expired. Sign in again.",
+      "forbidden": "You don't have permission to do this.",
+      "notFound": "We couldn't find what you were looking for.",
+      "generic": "Something went wrong. Try again in a moment."
+    },
+    "editShort": "Edit",
+    "cancel": "Cancel",
+    "noTags": "You haven't picked any yet.",
+    "editName": "Edit name",
+    "editTags": "Edit how you travel",
+    "avatarColor": "Your avatar colour",
+    "avatarAuto": "Automatic"
+  },
+  "TravelerTags": {
+    "adventure": "Adventure",
+    "relax": "Relaxing",
+    "food": "Food",
+    "culture": "Culture",
+    "nature": "Nature",
+    "beach": "Beach",
+    "mountains": "Mountains",
+    "city": "City",
+    "nightlife": "Nightlife",
+    "photography": "Photography",
+    "budget": "Budget",
+    "comfort": "Comfort",
+    "planner": "Plans everything",
+    "spontaneous": "Spontaneous",
+    "early_riser": "Early riser",
+    "road_trip": "Road trips"
+  },
+  "IdeaEdit": {
+    "action": "Edit idea",
+    "title": "Idea name",
+    "note": "Note",
+    "notePlaceholder": "Why you like it, opening hours, price…",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "stage": "Stop",
+    "noStage": "No stop",
+    "errors": {
+      "titleRequired": "Give the idea a name.",
+      "titleTooLong": "The name is too long (up to {max} characters).",
+      "noteTooLong": "The note is too long (up to {max} characters).",
+      "signedOut": "Your session has expired. Sign in again.",
+      "forbidden": "You can't edit this idea.",
+      "notFound": "This idea no longer exists.",
+      "generic": "We couldn't save it. Try again."
+    }
+  },
+  "AvatarColors": {
+    "forest": "Forest green",
+    "ochre": "Ochre",
+    "rust": "Rust",
+    "olive": "Olive",
+    "moss": "Moss",
+    "pinhao": "Pinhão",
+    "lagoon": "Lagoon",
+    "plum": "Plum"
+  },
+  "Invite": {
+    "title": "Invite your group",
+    "hint": "Share this link: whoever opens it joins the trip and can plant ideas and vote.",
+    "create": "Create invite link",
+    "creating": "Creating…",
+    "copy": "Copy link",
+    "copied": "Copied",
+    "share": "Share",
+    "revoke": "Revoke link",
+    "expires": "Valid until {date}.",
+    "shareText": "Join {trip} on Kurious",
+    "failed": "That did not work. Try again in a moment."
+  },
+  "NoTrip": {
+    "action": "New trip",
+    "mapLabel": "World map. You have no trips yet.",
+    "map": {
+      "title": "Your map is brand new",
+      "body": "Create a trip and this is where your group will plant its ideas, each in its place."
+    },
+    "plan": {
+      "title": "No plan yet",
+      "body": "Create a trip and the most voted ideas will line up by stage."
+    },
+    "group": {
+      "title": "Your group starts with you",
+      "body": "Create a trip to invite your people, or ask them for the invite link to theirs."
+    }
+  },
+  "Stages": {
+    "add": "Add stop",
+    "empty": "Split the trip into stops (the cities or areas you pass through) to sort the ideas and see the route on the map.",
+    "noPlace": "no place on the map",
+    "newTitle": "New stop",
+    "editTitle": "Edit stop",
+    "back": "Back to the plan",
+    "guide": "Give it a name and place it on the map: search for the place or tap where it is.",
+    "mapLabel": "Map to place the stop. Tap the spot where it is.",
+    "hint": {
+      "tap": "Tap the map to place the stop",
+      "move": "Tap another spot to move it"
+    },
+    "name": {
+      "label": "Stop name",
+      "placeholder": "Rio de Janeiro"
+    },
+    "startsOn": "Arrival",
+    "endsOn": "Departure",
+    "datesHint": "Dates are optional; you can add them later.",
+    "place": {
+      "set": "Placed on the map.",
+      "unset": "No place on the map yet.",
+      "remove": "Remove place"
+    },
+    "create": "Create stop",
+    "save": "Save changes",
+    "saving": "Saving…",
+    "editLabel": "Edit {name}",
+    "dragLabel": "Drag {name} to change the order",
+    "dragHint": "Drag to reorder (or use the up and down arrow keys)",
+    "color": {
+      "label": "Stop colour",
+      "hint": "Ideas in this stop will carry this colour on the map.",
+      "lagoon": "Lagoon blue",
+      "plum": "Plum",
+      "ochre": "Amber",
+      "berry": "Raspberry",
+      "sky": "Sky blue",
+      "forest": "Forest green",
+      "clay": "Terracotta",
+      "slate": "Slate grey"
+    },
+    "delete": {
+      "action": "Delete stop",
+      "title": "Delete the stop {name}?",
+      "body": "The ideas in this stop are not deleted: they stay in the trip without a stop."
+    },
+    "errors": {
+      "nameRequired": "Give the stop a name.",
+      "nameTooLong": "The name is too long (maximum {max} characters).",
+      "dateInvalid": "Check the date.",
+      "endBeforeStart": "Departure cannot be before arrival.",
+      "placeInvalid": "That place is not valid. Tap the map again.",
+      "signedOut": "Your session has expired. Log in again.",
+      "forbidden": "You cannot change the stops of this trip.",
+      "notFound": "This stop no longer exists.",
+      "generic": "Could not save. Try again."
+    }
+  },
+  "Moves": {
+    "undo": "Undo",
+    "redo": "Redo",
+    "dismiss": "Close notice",
+    "label": "Undo and redo moves",
+    "undoHint": "Undo (Ctrl+Z)",
+    "redoHint": "Redo (Ctrl+Y)",
+    "errors": {
+      "signedOut": "Your session has expired. Log in again.",
+      "forbidden": "You cannot move this idea.",
+      "notFound": "This idea no longer exists.",
+      "generic": "Could not move the idea."
     }
   }
 }

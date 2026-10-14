@@ -1,0 +1,37 @@
+{{- /* Kurious password recovery email. The language comes from user_metadata.locale (set at sign-up); Spanish otherwise. */ -}}
+{{- $locale := "es" -}}{{- with .Data -}}{{- $locale = printf "%v" .locale -}}{{- end -}}
+<!doctype html>
+<html>
+  <body style="margin: 0; padding: 0; background: #f4f0dc">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background: #f4f0dc; padding: 32px 16px">
+      <tr>
+        <td align="center">
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width: 440px; background: #fcfbf6; border: 1px solid #e4e6dc; border-radius: 24px; padding: 32px 28px; font-family: Nunito, Arial, Helvetica, sans-serif; color: #1f2a24">
+            <tr>
+              <td>
+                <p style="margin: 0 0 4px; font-family: Georgia, 'Times New Roman', serif; font-size: 30px; font-weight: 600; color: #1d4736">Kurious</p>
+                <p style="margin: 0 0 24px; font-size: 15px; font-weight: 700; color: #8e4a2a">Stay kurious.</p>
+                {{ if eq $locale "pt" }}
+                <p style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Escolha uma senha nova</p>
+                <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #5f6b63">Toque no botão para escolher uma senha nova e entrar no Kurious.</p>
+                {{ else if eq $locale "en" }}
+                <p style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Choose a new password</p>
+                <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #5f6b63">Tap the button to choose a new password and log in to Kurious.</p>
+                {{ else }}
+                <p style="margin: 0 0 8px; font-size: 20px; font-weight: 700">Elige una contraseña nueva</p>
+                <p style="margin: 0 0 24px; font-size: 16px; line-height: 1.5; color: #5f6b63">Pulsa el botón para elegir una contraseña nueva y entrar en Kurious.</p>
+                {{ end }}
+                <a href="{{ .RedirectTo }}?token_hash={{ .TokenHash }}&amp;type=recovery" style="display: block; background: #8e4a2a; color: #fcfbf6; text-decoration: none; text-align: center; font-size: 17px; font-weight: 800; padding: 15px 20px; border-radius: 999px">
+                  {{ if eq $locale "pt" }}Escolher senha{{ else if eq $locale "en" }}Choose password{{ else }}Elegir contraseña{{ end }}
+                </a>
+                <p style="margin: 24px 0 0; font-size: 13px; line-height: 1.5; color: #5f6b63">
+                  {{ if eq $locale "pt" }}Se você não pediu para trocar a senha, ignore este e-mail: ela continua a mesma.{{ else if eq $locale "en" }}If you didn't ask to change your password, you can ignore this email: it stays the same.{{ else }}Si no has pedido cambiar la contraseña, ignora este correo: sigue siendo la misma.{{ end }}
+                </p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
