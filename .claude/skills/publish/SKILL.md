@@ -1,6 +1,6 @@
 ---
 name: publish
-description: Publica los cambios de Kurious desde el equipo de Santiago (comprobación, commit en inglés directamente en main y push). Úsalo cuando Santiago diga «súbelo», «publica», «publícalo» o escriba /publish.
+description: Publica los cambios de Kurious (comprobación, commit en inglés directamente en main y push). Úsalo cuando Marc diga «súbelo», «publica», «publícalo» o escriba /publish.
 argument-hint: "[tema del cambio]"
 ---
 
@@ -8,20 +8,18 @@ argument-hint: "[tema del cambio]"
 
 «Súbelo» es el permiso para todo el flujo de este archivo: no preguntes en cada paso, pero
 para y avisa en cuanto algo no cuadre. Los commits salen con la identidad git de la máquina
-(`marcmarfer`, que es la cuenta de Santiago).
+(`marcmarfer`, la cuenta de Marc).
 
 De momento en Kurious no hay ramas ni worktrees: se commitea directamente en `main`, en la
-carpeta principal. Las ramas y los worktrees volverán cuando Santiago lo diga.
+carpeta principal. Las ramas y los worktrees volverán cuando Marc lo diga.
 
 ## Dónde está cada cosa
 
-`PRG/` es la carpeta madre (`..` desde la raíz del repo).
-
-|                   | Kurious                                        |
-| ----------------- | ---------------------------------------------- |
-| Carpeta principal | `PRG/Kurious`                                  |
-| Rama              | `main`                                         |
-| Despliegue        | Aún no hay despliegue automático al hacer push |
+|                   | Kurious                                            |
+| ----------------- | -------------------------------------------------- |
+| Carpeta principal | La raíz del repo (`git rev-parse --show-toplevel`) |
+| Rama              | `main`                                             |
+| Despliegue        | Aún no hay despliegue automático al hacer push     |
 
 Todo git con `git -C <principal> …` y rutas absolutas. Nunca `cd` a la carpeta principal salvo
 para `npm run check`, que necesita el cwd ahí.
@@ -32,7 +30,7 @@ para `npm run check`, que necesita el cwd ahí.
 2. `git -C <principal> status --short`. Sin cambios ni commits pendientes de subir → no hay
    nada que publicar; dilo y para.
 3. `git -C <principal> pull origin main`. Si falla o deja conflicto: **para**, no toques nada
-   más y dile a Santiago qué archivos chocan. No resuelvas conflictos por tu cuenta.
+   más y dile a Marc qué archivos chocan. No resuelvas conflictos por tu cuenta.
 4. `cd <principal> && npm run check`. Si falla, para y avisa.
 
 ## Paso 2: commit y push
@@ -53,5 +51,5 @@ Kurious aún no se despliega solo al hacer push a `main`: sáltate este paso y d
 
 ## Al terminar
 
-Un mensaje corto a Santiago: qué se ha publicado (el asunto del commit) y lo que haya quedado
+Un mensaje corto a Marc: qué se ha publicado (el asunto del commit) y lo que haya quedado
 pendiente.
