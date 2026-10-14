@@ -34,12 +34,13 @@ test.describe("in Spanish", () => {
     );
     const { token_hash } = await inbox.json();
     await page.goto(`/auth/confirm?token_hash=${token_hash}&type=email`);
-    await expect(page).toHaveURL("/trips/new");
-    await expect(page.getByLabel("Tu cuenta")).toHaveText("A");
+    await expect(page).toHaveURL("/start");
+    await expect(page.getByRole("link", { name: "Ajustes" })).toHaveText("A");
 
-    await page.getByLabel("Tu cuenta").click();
-    await expect(page.getByText(email)).toBeVisible();
-    await page.getByRole("button", { name: "Salir" }).click();
+    await page.getByRole("link", { name: "Ajustes" }).click();
+    await expect(page).toHaveURL("/settings");
+    await expect(page.getByText(email, { exact: true })).toBeVisible();
+    await page.getByRole("button", { name: "Cerrar sesión" }).click();
     await expect(page.getByRole("link", { name: "Entrar" })).toBeVisible();
 
     await page.getByRole("link", { name: "Entrar" }).click();
@@ -55,11 +56,11 @@ test.describe("in Spanish", () => {
 
     await page.getByLabel("Contraseña", { exact: true }).fill(password);
     await page.getByRole("button", { name: "Entrar" }).click();
-    await expect(page).toHaveURL("/trips/new");
-    await expect(page.getByLabel("Tu cuenta")).toHaveText("A");
+    await expect(page).toHaveURL("/start");
+    await expect(page.getByRole("link", { name: "Ajustes" })).toHaveText("A");
 
     await page.goto("/login");
-    await expect(page).toHaveURL("/trips/new");
+    await expect(page).toHaveURL("/start");
   });
 
   test("a used confirmation link explains what happened", async ({ page }) => {

@@ -135,6 +135,22 @@ const routes = {
   },
   "POST /auth/v1/logout": () => [204, null],
   "GET /rest/v1/trip_members": () => [200, []],
+  "GET /rest/v1/profiles": (_body, _url, headers) => {
+    const claims = verify(headers.authorization?.replace(/^Bearer /, ""));
+    const user = claims && [...users.values()].find((u) => u.id === claims.sub);
+    return [
+      200,
+      user
+        ? [
+            {
+              name: user.user_metadata.name ?? "",
+              traveler_tags: [],
+              avatar_color: null,
+            },
+          ]
+        : [],
+    ];
+  },
 };
 
 const server = createServer(async (req, res) => {
