@@ -635,5 +635,21 @@
       "notFound": "This idea no longer exists.",
       "generic": "Could not move the idea."
     }
+  },
+  "Language": {
+    "label": "Language",
+    "hint": "Choose the language for Kurious. On your first visit we use your browser’s language.",
+    "search": "Search languages",
+    "noResults": "No language matches",
+    "names": {
+      "es": "Español",
+      "pt": "Português",
+      "en": "English"
+    },
+    "inCurrent": {
+      "es": "Spanish",
+      "pt": "Portuguese",
+      "en": "English"
+    }
   }
 }

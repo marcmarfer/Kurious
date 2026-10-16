@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { getLocale, getNow, getTranslations } from "next-intl/server";
 import { cookies } from "next/headers";
 import { BackButton } from "@/components/back-button";
+import { LanguageSwitcher } from "@/components/language-switcher";
 import { signOut } from "@/features/auth/actions";
 import { getCurrentUser } from "@/features/auth/session";
 import { AvatarColorPicker } from "@/features/profile/avatar-color-picker";
@@ -31,8 +32,9 @@ export default async function SettingsPage() {
       locale: await getLocale(),
     });
   }
-  const [t, trips, now, profile, locale] = await Promise.all([
+  const [t, tLanguage, trips, now, profile, locale] = await Promise.all([
     getTranslations("Settings"),
+    getTranslations("Language"),
     getMyTrips(),
     getNow(),
     getMyProfile(),
@@ -81,6 +83,17 @@ export default async function SettingsPage() {
             />
             <div className="bg-line h-px" />
             <TagsEditor tags={profile?.tags ?? []} />
+          </section>
+
+          <section
+            aria-labelledby="settings-language"
+            className="border-line bg-cream shadow-card flex flex-col gap-2 rounded-[22px] border p-5"
+          >
+            <h2 id="settings-language" className="text-ink text-sm font-bold">
+              {tLanguage("label")}
+            </h2>
+            <p className="text-muted -mt-0.5 text-sm">{tLanguage("hint")}</p>
+            <LanguageSwitcher className="pt-1" />
           </section>
 
           <form action={signOut}>
